@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TT_A106_v0</string>
+    <string name="open_drawer">Open</string>
+    <string name="close_drawer">Close</string>
+
+    <string name="feedbacktype1">Paciente</string>
+    <string name="feedbacktype2">Medico</string>
+    <string name="feedbacktype3">Familiar</string>
+</resources>
