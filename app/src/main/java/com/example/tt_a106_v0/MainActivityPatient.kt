@@ -39,11 +39,17 @@ class MainActivityPatient : AppCompatActivity() {
                     }
                 }
                 R.id.nav_dispGlucometer -> {
-                    supportFragmentManager.beginTransaction().apply {
+                        val GlucometerScan = Intent(this, GlucometerFragment::class.java)
+                        startActivity(GlucometerScan)
+
+                    /*supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragmentContainerView_patient, GlucometerFragment())
                         commit()
                     }
+
+                     */
                 }
+
                 R.id.nav_familiar -> {
                     supportFragmentManager.beginTransaction().apply {
                         replace(R.id.fragmentContainerView_patient, FamiliarsFragment())
