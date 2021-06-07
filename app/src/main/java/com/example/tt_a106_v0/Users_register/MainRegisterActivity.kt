@@ -38,6 +38,9 @@ class MainRegisterActivity : AppCompatActivity() {
             val texto: String = genero.toString()
             Log.d(texto, texto.toString())
             //onRadioButtonGenre()
+            val radioButtonID: Int = genero.checkedRadioButtonId
+            //Log.d(radioButtonID, radioButtonID.toString())
+            //val selectedtext = genero.findViewById(radioButtonID).text as String
 
             if (email.text.isNotEmpty() && password.text.isNotEmpty() && password.text.toString() == passwordcheck.text.toString()) {
 
@@ -71,7 +74,6 @@ class MainRegisterActivity : AppCompatActivity() {
         startActivity(continueRegIntent)
     }
 
-
 /*
     private fun onRadioButtonGenre(view: View): String {
         if (view is RadioButton) {
@@ -95,4 +97,5 @@ class MainRegisterActivity : AppCompatActivity() {
     }
 
  */
+
 }
