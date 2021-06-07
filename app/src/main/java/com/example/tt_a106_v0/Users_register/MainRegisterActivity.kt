@@ -3,7 +3,6 @@ package com.example.tt_a106_v0.Users_register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.R
@@ -73,7 +72,7 @@ class MainRegisterActivity : AppCompatActivity() {
     }
 
 
-
+/*
     private fun onRadioButtonGenre(view: View): String {
         if (view is RadioButton) {
             // Is the button now checked?
@@ -94,4 +93,6 @@ class MainRegisterActivity : AppCompatActivity() {
             }
         }
     }
+
+ */
 }
