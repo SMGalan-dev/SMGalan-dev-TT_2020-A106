@@ -6,4 +6,9 @@
     <string name="feedbacktype1">Paciente</string>
     <string name="feedbacktype2">Medico</string>
     <string name="feedbacktype3">Familiar</string>
+    <string-array name="tiposUsuario">
+        <item>Paciente</item>
+        <item>Medico</item>
+        <item>Familiar</item>
+    </string-array>
 </resources>

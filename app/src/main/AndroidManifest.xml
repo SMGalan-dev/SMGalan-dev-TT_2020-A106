@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.tt_a106_v0">
+
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -12,12 +13,13 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.TT_A106_v0">
-        <activity android:name=".Users_register.MainRegisterActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
+        <activity android:name=".Users_register.EndRegister"></activity>
+        <activity
+            android:name=".Users_register.MainRegisterActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivityPatient" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
-
         <activity android:name=".AuthActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
