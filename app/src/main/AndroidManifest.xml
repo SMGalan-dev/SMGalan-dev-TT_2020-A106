@@ -20,12 +20,10 @@
         <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivityPatient" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
-        <activity
-            android:name=".AuthActivity"
+        <activity android:name=".AuthActivity"
             android:theme="@style/SplashTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
