@@ -29,41 +29,53 @@
             android:textColor="#FFFFFF"
             android:textSize="35sp" />
 
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="1" />
+
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="157dp"
             android:layout_weight="1"
-            tools:srcCompat="@tools:sample/avatars" />
+            android:src="@drawable/female_avatar" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp"
+            android:layout_weight="1" />
 
         <EditText
             android:id="@+id/emailEditText"
-            android:textColorHint="@color/bluemain"
-            android:textColor="@color/bluemain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_edit_text"
             android:ems="10"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:padding="8dp"
+            android:textColor="@color/bluemain"
+            android:textColorHint="@color/bluemain" />
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp"
+            android:layout_height="16dp"
             android:layout_weight="1" />
 
         <EditText
             android:id="@+id/passwordEditText"
-            android:textColorHint="@color/bluemain"
-            android:textColor="@color/bluemain"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="40dp"
             android:layout_weight="1"
             android:background="@drawable/rounded_edit_text"
             android:ems="10"
             android:hint="Contraseña"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:padding="8dp"
+            android:textColor="@color/bluemain"
+            android:textColorHint="@color/bluemain" />
 
         <Space
             android:layout_width="match_parent"
@@ -86,20 +98,6 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/signUpButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="242dp"
-        android:layout_marginEnd="52dp"
-        android:layout_marginBottom="68dp"
-        android:layout_weight="1"
-        android:text="Registrar"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
         android:id="@+id/logInButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -109,5 +107,50 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="73dp"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/signUpButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="90dp"
+            android:layout_marginBottom="12dp"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:text="Regístrate"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="6dp"
+            android:layout_marginBottom="24dp"
+            android:text="¿No tienes cuenta?"
+            android:textColor="@color/bluemain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/signUpButton" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="140dp"
+        android:text="Olvidé mi contraseña"
+        android:textColor="@color/greenmain"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logInButton" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
