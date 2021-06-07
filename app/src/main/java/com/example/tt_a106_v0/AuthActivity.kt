@@ -10,7 +10,12 @@ import com.example.tt_a106_v0.Users_register.MainRegisterActivity
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthActivity : AppCompatActivity() {
+    //SplashScreen
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        setTheme(R.style.Theme_TT_A106_v0)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
