@@ -3,10 +3,12 @@ package com.example.tt_a106_v0.Users_register
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.R
 import com.example.tt_a106_v0.providerType
+import com.google.firebase.auth.FirebaseAuth
 
 
 class MainRegisterActivity : AppCompatActivity() {
@@ -17,8 +19,8 @@ class MainRegisterActivity : AppCompatActivity() {
     }
 
     private fun firstRegister() {
-        val typeUser = findViewById<Spinner>(R.id.SpinnerUserType)
-        val genero = findViewById<RadioGroup>(R.id.opciones_sexo)
+        val typeUserCheck = findViewById<Spinner>(R.id.SpinnerUserType)
+        val generoOpc = findViewById<RadioGroup>(R.id.opciones_sexo)
         val email = findViewById<TextView>(R.id.emailEditText)
         val password = findViewById<EditText>(R.id.passwordEditText)
         val passwordcheck = findViewById<EditText>(R.id.passwordConfirmEditText)
@@ -32,33 +34,29 @@ class MainRegisterActivity : AppCompatActivity() {
         }
 
         continueRegBtn.setOnClickListener {
-            val size = typeUser.selectedItem.toString()
-            Log.d(size, size.toString())
-            Log.d("lala", "lalalalalalallalal")
-            val texto: String = genero.toString()
-            Log.d(texto, texto.toString())
-            //onRadioButtonGenre()
-            val radioButtonID: Int = genero.checkedRadioButtonId
-            //Log.d(radioButtonID, radioButtonID.toString())
-            //val selectedtext = genero.findViewById(radioButtonID).text as String
+            //Tipo ed usuario
+            val typeUser = typeUserCheck.selectedItem.toString()
+            Log.d(typeUser, typeUser.toString())
+            //Genero
+            val radioButtonID: Int = generoOpc.checkedRadioButtonId
+            val radioButton: View = generoOpc.findViewById<RadioButton>(radioButtonID)
+            val genre: Int = generoOpc.indexOfChild(radioButton) //0 masculino, 1 Femenino
+            Log.d(genre.toString(), genre.toString())
 
+            //val selectedtext = genero.getChildAt(idx).text.toString()
             if (email.text.isNotEmpty() && password.text.isNotEmpty() && password.text.toString() == passwordcheck.text.toString()) {
 
-                /*
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
-                            showHome(it.result?.user?.email ?: "", providerType.BASIC)
+                            continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "", providerType.BASIC)
                         } else{
-                            showAlert()
+                            Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
                         }
-                    }*/
-                /*
-                    Timber.i("SUCCESS: Notify set to '%s' for %s", isNotifying, characteristic.getUuid())
+                    }
                     Toast.makeText(this, "Continua el registro", Toast.LENGTH_SHORT).show()
 
-                     */
             } else {
-                Toast.makeText(this, "ERRRRRROR", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
 
             }
 
@@ -66,36 +64,15 @@ class MainRegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun continueReg(typeUser: String, genero: String, email:String, provider: providerType){
+    private fun continueReg(typeUser: String, genre: Int, email:String, provider: providerType){
         val continueRegIntent = Intent(this, EndRegister::class.java).apply {
+            putExtra("typeUser", typeUser)
+            putExtra("genre", genre)
             putExtra("email", email)
             putExtra("provider", provider.name)
         }
         startActivity(continueRegIntent)
     }
 
-/*
-    private fun onRadioButtonGenre(view: View): String {
-        if (view is RadioButton) {
-            // Is the button now checked?
-            val checked = view.isChecked
-
-            // Check which radio button was clicked
-            when (view.getId()) {
-                R.id.radio_masculino ->
-                    if (checked) {
-                        // Pirates are the best
-                        return "Masculino"
-                    }
-                R.id.radio_femenino ->
-                    if (checked) {
-                        // Ninjas rule
-                        return "Femenino"
-                    }
-            }
-        }
-    }
-
- */
 
 }
