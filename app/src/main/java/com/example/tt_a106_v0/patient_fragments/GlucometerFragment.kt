@@ -19,13 +19,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.MainActivityPatient
 import com.example.tt_a106_v0.R
 import com.example.tt_a106_v0.bleglucometer.BluetoothHandler
 import com.example.tt_a106_v0.bleglucometer.GlucoseMeasurement
 import com.example.tt_a106_v0.bleglucometer.GlucoseMeasurementUnit
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import com.welie.blessed.BluetoothCentralManager
 import com.welie.blessed.BluetoothPeripheral
 import timber.log.Timber
@@ -46,11 +49,39 @@ class GlucometerFragment : AppCompatActivity() {
         registerReceiver(locationServiceStateReceiver, IntentFilter(LocationManager.MODE_CHANGED_ACTION))
         registerReceiver(glucoseDataReceiver, IntentFilter(BluetoothHandler.MEASUREMENT_GLUCOSE))
 
-        val btnn = findViewById<Button>(R.id.retGlucbtn)
-        btnn.setOnClickListener {
-            val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+
+
+        val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+        val cancelRegDispData = findViewById<Button>(R.id.cancelGlucbtn)
+        cancelRegDispData.setOnClickListener{
+            Toast.makeText(this, "Guardado cancelado", Toast.LENGTH_SHORT).show()
+            startActivity(intoUserIntent)
+
+        }
+
+    }
+
+    private fun saveMeasurementData(measurement: String, unit: String, date: String, disp: String){
+        var user = Firebase.auth.currentUser
+        val glucoseLevel = measurement
+        val unit = unit
+        val device = disp
+        val tst = ""
+        val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+        val Terminate = findViewById<Button>(R.id.saveGlucbtn)
+
+        Terminate.setOnClickListener {
+            Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+            db.collection("users").document(user.email.toString()).collection("glucoseTestRecords").document(date).set(
+                hashMapOf(
+                    "glucoseLevel" to glucoseLevel,
+                    "unit" to unit,
+                    "device" to device
+                )
+            )
             startActivity(intoUserIntent)
         }
+
     }
 
 
@@ -102,7 +133,15 @@ class GlucometerFragment : AppCompatActivity() {
             if (measurement != null) {
                 measurementValue!!.text = java.lang.String.format(Locale.ENGLISH, "%.1f %s\n%s\n\nfrom %s", measurement.value, if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL", dateFormat.format(measurement.timestamp), peripheral.name)
                 Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
-
+                val measurementV = measurement.value.toString()
+                val unitM = if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL"
+                val dateM = dateFormat.format(measurement.timestamp).toString()
+                val dispM = peripheral.name.toString()
+                Log.d("MMMMMMMMMMMMMMMMEEEmeas", measurementV   )
+                Log.d("MMMMMMMMMMMMMMMMEEEunit", unitM   )
+                Log.d("MMMMMMMMMMMMMMMMEEEdate", dateM   )
+                Log.d("MMMMMMMMMMMMMMMMEEEdisp", dispM   )
+                saveMeasurementData(measurementV, unitM, dateM, dispM)
             }
         }
     }
