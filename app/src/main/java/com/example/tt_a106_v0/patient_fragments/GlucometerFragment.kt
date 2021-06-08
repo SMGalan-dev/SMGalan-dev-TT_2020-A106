@@ -15,6 +15,7 @@ import android.location.LocationManager
 import android.os.Build
 import android.os.Bundle
 import android.provider.Settings
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -24,6 +25,7 @@ import com.example.tt_a106_v0.R
 import com.example.tt_a106_v0.bleglucometer.BluetoothHandler
 import com.example.tt_a106_v0.bleglucometer.GlucoseMeasurement
 import com.example.tt_a106_v0.bleglucometer.GlucoseMeasurementUnit
+import com.google.firebase.firestore.FirebaseFirestore
 import com.welie.blessed.BluetoothCentralManager
 import com.welie.blessed.BluetoothPeripheral
 import timber.log.Timber
@@ -32,6 +34,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class GlucometerFragment : AppCompatActivity() {
+
+    private val db = FirebaseFirestore.getInstance()
+
     private var measurementValue: TextView? = null
     private val dateFormat: DateFormat = SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,6 +101,8 @@ class GlucometerFragment : AppCompatActivity() {
             val measurement: GlucoseMeasurement? = intent.getSerializableExtra(BluetoothHandler.MEASUREMENT_GLUCOSE_EXTRA) as GlucoseMeasurement?
             if (measurement != null) {
                 measurementValue!!.text = java.lang.String.format(Locale.ENGLISH, "%.1f %s\n%s\n\nfrom %s", measurement.value, if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL", dateFormat.format(measurement.timestamp), peripheral.name)
+                Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
+
             }
         }
     }

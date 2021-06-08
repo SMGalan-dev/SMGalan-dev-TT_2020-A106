@@ -7,7 +7,6 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
-import com.example.tt_a106_v0.patient_fragments.DoctorsFragment
 import com.example.tt_a106_v0.patient_fragments.FamiliarsFragment
 import com.example.tt_a106_v0.patient_fragments.GlucometerFragment
 import com.example.tt_a106_v0.patient_fragments.HomeFragmentPatient
@@ -58,7 +57,7 @@ class MainActivityPatient : AppCompatActivity() {
                 }
                 R.id.nav_Medicos -> {
                     supportFragmentManager.beginTransaction().apply {
-                        replace(R.id.fragmentContainerView_patient, DoctorsFragment())
+                        replace(R.id.fragmentContainerView_patient, TestFragment())
                         commit()
                     }
                 }
