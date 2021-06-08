@@ -7,7 +7,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.R
-import com.example.tt_a106_v0.providerType
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -48,7 +47,7 @@ class MainRegisterActivity : AppCompatActivity() {
 
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
-                            continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "", providerType.BASIC)
+                            continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "")
                         } else{
                             Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
                         }
@@ -64,12 +63,11 @@ class MainRegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun continueReg(typeUser: String, genre: Int, email:String, provider: providerType){
+    private fun continueReg(typeUser: String, genre: Int, email:String){
         val continueRegIntent = Intent(this, EndRegister::class.java).apply {
             putExtra("typeUser", typeUser)
             putExtra("genre", genre)
             putExtra("email", email)
-            putExtra("provider", provider.name)
         }
         startActivity(continueRegIntent)
     }
