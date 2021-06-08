@@ -12,11 +12,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="Nombre (s)"
         android:inputType="textPersonName"
-        android:text="Nombre (s)"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/textView13"
-        tools:layout_editor_absoluteX="102dp" />
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
     <EditText
         android:id="@+id/editTextTRegApPaterno"
@@ -24,11 +25,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="Apellido paterno"
         android:inputType="textPersonName"
-        android:text="Apellido paterno"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegName"
-        tools:layout_editor_absoluteX="102dp" />
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegName" />
 
     <EditText
         android:id="@+id/editTextRegApMaterno"
@@ -36,11 +38,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
+        android:hint="Apellido materno"
         android:inputType="textPersonName"
-        android:text="Apellido materno"
-        android:textColor="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTRegApPaterno"
-        tools:layout_editor_absoluteX="102dp" />
+        android:textColorHint="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTRegApPaterno" />
 
     <EditText
         android:id="@+id/editTextRegPhone"
@@ -51,20 +55,24 @@
         android:hint="Telefono"
         android:inputType="phone"
         android:textColorHint="#FFFFFF"
-        app:layout_constraintTop_toBottomOf="@+id/editTextRegApMaterno"
-        tools:layout_editor_absoluteX="101dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextRegApMaterno" />
 
     <TextView
         android:id="@+id/textView13"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
         android:layout_weight="1"
         android:text="¡Continue su registro!"
         android:textColor="#FFFFFF"
         android:textSize="35sp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/regDataPatientBtn"

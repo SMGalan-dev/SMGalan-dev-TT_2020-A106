@@ -121,17 +121,6 @@ public class BluetoothHandler {
                 Timber.e("ERROR: Changing notification state failed for %s (%s)", characteristic.getUuid(), status);
             }
         }
-/*
-        //Writing test, NO NECESSARY FUNCTION
-        @Override
-        public void onCharacteristicWrite(@NotNull BluetoothPeripheral peripheral, @NotNull byte[] value, @NotNull BluetoothGattCharacteristic characteristic, @NotNull GattStatus status) {
-            if (status == GattStatus.SUCCESS) {
-                Timber.i("SUCCESS: Writing <%s> to <%s>", bytes2String(value), characteristic.getUuid());
-            } else {
-                Timber.i("ERROR: Failed writing <%s> to <%s> (%s)", bytes2String(value), characteristic.getUuid(), status);
-            }
-        }
-*/
         @Override
         public void onCharacteristicUpdate(@NotNull BluetoothPeripheral peripheral, @NotNull byte[] value, @NotNull BluetoothGattCharacteristic characteristic, @NotNull GattStatus status) {
             if (status != GattStatus.SUCCESS) return;
