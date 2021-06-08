@@ -2,6 +2,7 @@
     <string name="app_name">Glucontrol</string>
     <string name="open_drawer">Open</string>
     <string name="close_drawer">Close</string>
+    <string name="main_menu">Menú Principal </string>
 
     <string name="feedbacktype1">Paciente</string>
     <string name="feedbacktype2">Medico</string>
