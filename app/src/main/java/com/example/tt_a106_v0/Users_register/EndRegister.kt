@@ -66,7 +66,7 @@ class EndRegister : AppCompatActivity() {
 
 
             } else{
-            Toast.makeText(this, "Por favor, rellene todos lso campos", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
         }
 
     }
