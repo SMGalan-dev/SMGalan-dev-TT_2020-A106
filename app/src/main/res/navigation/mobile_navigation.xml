@@ -9,7 +9,23 @@
         android:id="@+id/nav_homePatient"
         android:name="com.example.tt_a106_v0.ui.home.HomeFragment"
         android:label="@string/main_menu"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Perfil"
+            app:destination="@id/nav_Perfil" />
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Citas"
+            app:destination="@id/nav_Citas" />
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Medicamentos"
+            app:destination="@id/nav_Medicamentos" />
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Dieta"
+            app:destination="@id/nav_Dieta" />
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Glucosa"
+            app:destination="@id/nav_Glucosa" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_familiar"
@@ -19,9 +35,39 @@
 
     <fragment
         android:id="@+id/nav_Medicos"
-        android:name="com.example.tt_a106_v0.patient_fragments.DataUserFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.DoctorsFragment"
         android:label="@string/menu_doc"
         tools:layout="@layout/fragment_doctors" />
+
+    <fragment
+        android:id="@+id/nav_Citas"
+        android:name="com.example.tt_a106_v0.patient_fragments.CitesFragment"
+        android:label="Citas"
+        tools:layout="@layout/fragment_cites" />
+
+    <fragment
+        android:id="@+id/nav_Perfil"
+        android:name="com.example.tt_a106_v0.patient_fragments.DataUserFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_doctors" />
+
+    <fragment
+        android:id="@+id/nav_Medicamentos"
+        android:name="com.example.tt_a106_v0.patient_fragments.MedicationFragment"
+        android:label="Medicamentos"
+        tools:layout="@layout/fragment_medication" />
+
+    <fragment
+        android:id="@+id/nav_Dieta"
+        android:name="com.example.tt_a106_v0.patient_fragments.DietFragment"
+        android:label="Dieta"
+        tools:layout="@layout/fragment_diet" />
+
+    <fragment
+        android:id="@+id/nav_Glucosa"
+        android:name="com.example.tt_a106_v0.patient_fragments.GlucoseMeasurementsFragment"
+        android:label="Glucosa"
+        tools:layout="@layout/fragment_glucose_measurements" />
 
     <activity
         android:id="@+id/nav_dispGlucometer"

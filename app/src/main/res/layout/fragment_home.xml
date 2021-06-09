@@ -37,7 +37,8 @@
                     android:layout_margin="10dp"
                     app:cardBackgroundColor="@color/white"
                     app:cardCornerRadius="12dp"
-                    app:cardElevation="5dp">
+                    app:cardElevation="5dp"
+                    android:id="@+id/menuPerfilPatient">
 
 
                     <LinearLayout
@@ -46,15 +47,12 @@
                         android:gravity="center"
                         android:orientation="vertical">
 
-                        <ImageButton
-                            android:id="@+id/imageButtonProfile"
-                            android:layout_width="130dp"
-                            android:layout_height="145dp"
-                            android:backgroundTint="@color/design_default_color_background"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/profile"
-                            tools:layout_editor_absoluteX="128dp"
-                            tools:layout_editor_absoluteY="252dp" />
+
+                        <ImageView
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="18dp"
+                            android:src="@drawable/profile" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -69,6 +67,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/menuCitas"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_margin="10dp"
@@ -101,6 +100,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/menuMedicamentos"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_margin="10dp"
@@ -131,6 +131,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/menuDietas"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_margin="10dp"
@@ -161,6 +162,7 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/menuGlucosa"
                     android:layout_width="170dp"
                     android:layout_height="170dp"
                     android:layout_margin="10dp"
