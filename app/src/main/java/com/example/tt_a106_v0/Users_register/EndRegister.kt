@@ -7,7 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tt_a106_v0.MainActivityPatient
+import com.example.tt_a106_v0.MainActivityPatient1
 import com.example.tt_a106_v0.R
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -73,7 +73,7 @@ class EndRegister : AppCompatActivity() {
                     "phone" to phoneReg.text.toString()
                 )
             )
-            val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+            val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
             startActivity(intoUserIntent)
 
 

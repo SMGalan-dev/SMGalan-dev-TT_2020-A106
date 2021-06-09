@@ -21,7 +21,7 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.example.tt_a106_v0.MainActivityPatient
+import com.example.tt_a106_v0.MainActivityPatient1
 import com.example.tt_a106_v0.R
 import com.example.tt_a106_v0.bleglucometer.BluetoothHandler
 import com.example.tt_a106_v0.bleglucometer.GlucoseMeasurement
@@ -51,7 +51,7 @@ class GlucometerFragment : AppCompatActivity() {
 
 
 
-        val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+        val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
         val cancelRegDispData = findViewById<Button>(R.id.cancelGlucbtn)
         cancelRegDispData.setOnClickListener{
             Toast.makeText(this, "Guardado cancelado", Toast.LENGTH_SHORT).show()
@@ -67,7 +67,7 @@ class GlucometerFragment : AppCompatActivity() {
         val unit = unit
         val device = disp
         val tst = ""
-        val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+        val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
         val Terminate = findViewById<Button>(R.id.saveGlucbtn)
 
         Terminate.setOnClickListener {

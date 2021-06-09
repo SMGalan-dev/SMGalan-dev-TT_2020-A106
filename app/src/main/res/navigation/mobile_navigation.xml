@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_homePatient">
+
+    <fragment
+        android:id="@+id/nav_homePatient"
+        android:name="com.example.tt_a106_v0.ui.home.HomeFragment"
+        android:label="@string/main_menu"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/nav_familiar"
+        android:name="com.example.tt_a106_v0.patient_fragments.FamiliarsFragment"
+        android:label="@string/menu_fam"
+        tools:layout="@layout/fragment_familiars" />
+
+    <fragment
+        android:id="@+id/nav_Medicos"
+        android:name="com.example.tt_a106_v0.patient_fragments.DoctorsFragment"
+        android:label="@string/menu_doc"
+        tools:layout="@layout/fragment_doctors" />
+
+    <activity
+        android:id="@+id/nav_dispGlucometer"
+        android:name="com.example.tt_a106_v0.patient_fragments.GlucometerFragment"
+        android:label="@string/menu_gluco"
+        tools:layout="@layout/fragment_glucometer"
+        />
+    <activity
+        android:id="@+id/nav_logOut"
+        />
+</navigation>

@@ -40,7 +40,7 @@ class HomeActivity : AppCompatActivity() {
         }
         val btnn = findViewById<Button>(R.id.fragmentExample)
         btnn.setOnClickListener {
-            val intoUserIntent = Intent(this, MainActivityPatient::class.java)
+            val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
             startActivity(intoUserIntent)
         }
     }

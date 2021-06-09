@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.tt_a106_v0">
+    package="com.example.tt_a106_v0" >
 
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
@@ -12,18 +12,24 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.TT_A106_v0">
-        <activity android:name=".Users_register.EndRegister"></activity>
+        android:theme="@style/Theme.TT_A106_v0" >
+        <activity
+            android:name=".MainActivityPatient1"
+            android:label="@string/title_activity_main_patient1"
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" >
+        </activity>
+        <activity android:name=".Users_register.EndRegister" />
         <activity
             android:name=".Users_register.MainRegisterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
         <activity android:name=".HomeActivity" />
-        <activity android:name=".MainActivityPatient" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
-        <activity android:name=".AuthActivity"
-            android:theme="@style/SplashTheme">
+        <activity
+            android:name=".AuthActivity"
+            android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
