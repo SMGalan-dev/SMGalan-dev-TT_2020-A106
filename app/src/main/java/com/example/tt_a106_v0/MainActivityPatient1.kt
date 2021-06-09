@@ -1,6 +1,8 @@
 package com.example.tt_a106_v0
+import android.content.Intent
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -10,7 +12,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.example.tt_a106_v0.databinding.ActivityMainPatient1Binding
+import com.google.firebase.auth.FirebaseAuth
+
+
 
 class MainActivityPatient1 : AppCompatActivity() {
 
@@ -38,6 +45,13 @@ private lateinit var binding: ActivityMainPatient1Binding
             R.id.nav_homePatient, R.id.nav_dispGlucometer, R.id.nav_familiar,R.id.nav_Medicos), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+        val signoutMenuItem = binding.navView.menu.findItem(R.id.nav_logOut)
+        signoutMenuItem.setOnMenuItemClickListener {
+            logOutIntent()
+            true
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -50,4 +64,16 @@ private lateinit var binding: ActivityMainPatient1Binding
         val navController = findNavController(R.id.nav_host_fragment_content_main_activity_patient1)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
+    private fun logOutIntent(){
+        FirebaseAuth.getInstance().signOut()
+        val intoUserIntent = Intent(this, AuthActivity::class.java)
+        startActivity(intoUserIntent)
+    }
 }
+
+
+
+
+
+
