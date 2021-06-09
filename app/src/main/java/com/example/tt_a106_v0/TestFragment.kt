@@ -12,15 +12,13 @@ import com.google.firebase.ktx.Firebase
 
 class TestFragment : Fragment(R.layout.fragment_test) {
     private lateinit var mView: View
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         var user = Firebase.auth.currentUser
-
-
-
-        //var user1 = firebase.auth().currentUser;
         mView=inflater.inflate(R.layout.fragment_test,container,false)
-        val btn = mView.findViewById<Button>(R.id.testBtn)
-        btn.setOnClickListener {
+
+        val update = mView.findViewById<Button>(R.id.testBtn)
+        update.setOnClickListener {
             if (user != null) {
                 Toast.makeText(activity, user.email.toString(), Toast.LENGTH_SHORT).show()
             } else {
@@ -30,5 +28,4 @@ class TestFragment : Fragment(R.layout.fragment_test) {
         }
         return mView
     }
-
 }

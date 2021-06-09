@@ -61,21 +61,8 @@ class EndRegister : AppCompatActivity() {
                     "phone" to phoneReg.text.toString()
                 )
             )
-
-            db.collection("users").document(email).collection("telefonos").document(phoneReg.text.toString()).set(
-                hashMapOf(
-                    "user_Type" to typeUser,
-                    "genre" to genre,
-                    //"email" to email,
-                    "name" to nameText.text.toString(),
-                    "lastName" to apPText.text.toString(),
-                    "mLastName" to apMText.text.toString(),
-                    "phone" to phoneReg.text.toString()
-                )
-            )
             val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
             startActivity(intoUserIntent)
-
 
             } else{
             Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()

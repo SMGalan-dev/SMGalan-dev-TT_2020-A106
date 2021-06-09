@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/nav_Medicos"
-        android:name="com.example.tt_a106_v0.patient_fragments.DoctorsFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.DataUserFragment"
         android:label="@string/menu_doc"
         tools:layout="@layout/fragment_doctors" />
 
