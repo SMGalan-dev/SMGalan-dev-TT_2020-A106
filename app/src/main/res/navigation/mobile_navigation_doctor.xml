@@ -9,7 +9,7 @@
         android:id="@+id/nav_homeDoctor"
         android:name="com.example.tt_a106_v0.ui.home.HomeDoctorFragment"
         android:label="@string/main_menu"
-        tools:layout="@layout/fragment_home_doctor" >
+        tools:layout="@layout/fragment_home_doctor">
         <!-- Falta agregar fragmento de Familiares
         <action
             android:id="@+id/action_nav_homeFamiliar_to_nav_Pacientes"

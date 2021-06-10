@@ -60,16 +60,17 @@ class AuthActivity : AppCompatActivity() {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
-                        if(Paciente.isChecked) {
+                       if(Paciente.isChecked) {
                             val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
                             startActivity(intoUserIntent)
-                        }else if(Familiar.isChecked) {
+                       }else if(Familiar.isChecked) {
                             val intoUserIntent = Intent(this, MainActivityFamiliar::class.java)
                             startActivity(intoUserIntent)
                         }else if (Doctor.isChecked){
                             val intoUserIntent = Intent(this, MainActivityDoctor::class.java)
                             startActivity(intoUserIntent)
                         }
+
 
 
                     } else{
