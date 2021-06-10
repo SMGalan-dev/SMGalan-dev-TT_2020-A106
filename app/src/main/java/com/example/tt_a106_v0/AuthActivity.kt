@@ -2,8 +2,7 @@ package com.example.tt_a106_v0
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.Users_register.MainRegisterActivity
@@ -32,7 +31,15 @@ class AuthActivity : AppCompatActivity() {
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
         val logInButton = findViewById<Button>(R.id.logInButton)
+        val radioGrupo = findViewById<RadioGroup>(R.id.radioGroup1)
+        val Paciente = findViewById<RadioButton>(R.id.usePaciente)
+        val Familiar = findViewById<RadioButton>(R.id.useFamiliar)
+        val Doctor = findViewById<RadioButton>(R.id.useDoctor)
+
         title = "Autenticación"
+        var seleccionar: Int
+
+
 
         signUpButton.setOnClickListener {
             /*
@@ -53,8 +60,18 @@ class AuthActivity : AppCompatActivity() {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
-                        val intoUserIntent = Intent(this, MainActivityDoctor::class.java)
-                        startActivity(intoUserIntent)
+                        if(Paciente.isChecked) {
+                            val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
+                            startActivity(intoUserIntent)
+                        }else if(Familiar.isChecked) {
+                            val intoUserIntent = Intent(this, MainActivityFamiliar::class.java)
+                            startActivity(intoUserIntent)
+                        }else if (Doctor.isChecked){
+                            val intoUserIntent = Intent(this, MainActivityDoctor::class.java)
+                            startActivity(intoUserIntent)
+                        }
+
+
                     } else{
                         showAlert()
                     }
@@ -70,5 +87,7 @@ class AuthActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
+
 
 }

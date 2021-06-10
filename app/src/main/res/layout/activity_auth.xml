@@ -76,24 +76,40 @@
             android:padding="8dp"
             android:textColor="@color/bluemain"
             android:textColorHint="@color/bluemain" />
-
         <Space
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:layout_weight="1" />
+            android:layout_height="18dp"/>
+        <RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/radioGroup1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <RadioButton android:id="@+id/usePaciente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Paciente"
+                android:textSize="18dp"
+                android:textColor="@color/white"
+                tools:ignore="OnClick" />
+            <RadioButton android:id="@+id/useFamiliar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Familiar"
+                android:textSize="18dp"
+                android:textColor="@color/white"/>
+            <RadioButton android:id="@+id/useDoctor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Doctor"
+                android:textSize="18dp"
+                android:textColor="@color/white"/>
+        </RadioGroup>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <Space
-                android:layout_width="8dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-        </LinearLayout>
+            android:orientation="horizontal"/>
 
     </LinearLayout>
 
