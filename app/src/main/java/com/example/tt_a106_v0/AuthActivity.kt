@@ -7,11 +7,12 @@ import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.Users_register.MainRegisterActivity
+import com.example.tt_a106_v0.databinding.ActivityAuthBinding
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthActivity : AppCompatActivity() {
     //SplashScreen
-
+  //  private lateinit var binding: ActivityAuthBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(3000)
@@ -24,6 +25,9 @@ class AuthActivity : AppCompatActivity() {
     }
 
     private fun setup(){
+    //    binding = ActivityAuthBinding.inflate(layoutInflater)
+      //  setContentView(binding.root)
+
         val signUpButton = findViewById<Button>(R.id.signUpButton)
         val emailEditText = findViewById<EditText>(R.id.emailEditText)
         val passwordEditText = findViewById<EditText>(R.id.passwordEditText)
@@ -45,11 +49,11 @@ class AuthActivity : AppCompatActivity() {
             startActivity(registerUserIntent)
         }
 
-        logInButton.setOnClickListener {
+            logInButton.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
-                        val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
+                        val intoUserIntent = Intent(this, MainActivityDoctor::class.java)
                         startActivity(intoUserIntent)
                     } else{
                         showAlert()

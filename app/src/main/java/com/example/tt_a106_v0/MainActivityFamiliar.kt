@@ -14,35 +14,36 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
-import com.example.tt_a106_v0.databinding.ActivityMainPatient1Binding
+import com.example.tt_a106_v0.databinding.ActivityMainFamiliarBinding
 import com.google.firebase.auth.FirebaseAuth
 
 
 
-class MainActivityPatient1 : AppCompatActivity() {
+class MainActivityFamiliar : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
-private lateinit var binding: ActivityMainPatient1Binding
+    private lateinit var binding: ActivityMainFamiliarBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-     binding = ActivityMainPatient1Binding.inflate(layoutInflater)
-    setContentView(binding.root)
+        binding = ActivityMainFamiliarBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        setSupportActionBar(binding.appBarMainActivityPatient1.toolbar)
+        setSupportActionBar(binding.appBarMainActivityFamiliar.toolbar)
 
-        binding.appBarMainActivityPatient1.fab.setOnClickListener { view ->
+        binding.appBarMainActivityFamiliar.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                    .setAction("Action", null).show()
+                .setAction("Action", null).show()
         }
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
-        val navController = findNavController(R.id.nav_host_fragment_content_main_activity_patient1)
+        val navController = findNavController(R.id.nav_host_fragment_content_main_activity_familiar
+        )
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.nav_homePatient, R.id.nav_dispGlucometer, R.id.nav_familiar,R.id.nav_Medicos), drawerLayout)
+            R.id.nav_homeFamiliar, R.id.nav_Notifications), drawerLayout)
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
@@ -56,12 +57,14 @@ private lateinit var binding: ActivityMainPatient1Binding
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.main_activity_patient1, menu)
+        menuInflater.inflate(R.menu.main_activity_familiar
+            , menu)
         return true
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val navController = findNavController(R.id.nav_host_fragment_content_main_activity_patient1)
+        val navController = findNavController(R.id.nav_host_fragment_content_main_activity_familiar
+        )
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
@@ -71,7 +74,6 @@ private lateinit var binding: ActivityMainPatient1Binding
         startActivity(intoUserIntent)
     }
 }
-
 
 
 

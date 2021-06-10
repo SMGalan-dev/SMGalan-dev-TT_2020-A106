@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_familiar"
+    app:startDestination="@+id/nav_homeFamiliar">
+
+    <fragment
+        android:id="@+id/nav_homeFamiliar"
+        android:name="com.example.tt_a106_v0.ui.home.HomeFamiliarFragment"
+        android:label="@string/main_menu"
+        tools:layout="@layout/fragment_home_familiar" >
+        <action
+            android:id="@+id/action_nav_homePatient_to_nav_Perfil"
+            app:destination="@id/nav_Perfil" />
+        <!-- Falta agregar fragmento de Familiares
+        <action
+            android:id="@+id/action_nav_homeFamiliar_to_nav_Pacientes"
+            app:destination="@id/nav_Citas" />-->
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_familiar"
+        android:name="com.example.tt_a106_v0.patient_fragments.FamiliarsFragment"
+        android:label="@string/menu_fam"
+        tools:layout="@layout/fragment_familiars" />
+
+    <fragment
+        android:id="@+id/nav_Medicos"
+        android:name="com.example.tt_a106_v0.patient_fragments.DoctorsFragment"
+        android:label="@string/menu_doc"
+        tools:layout="@layout/fragment_doctors" />
+
+    <fragment
+        android:id="@+id/nav_Citas"
+        android:name="com.example.tt_a106_v0.patient_fragments.CitesFragment"
+        android:label="Citas"
+        tools:layout="@layout/fragment_cites" />
+
+    <fragment
+        android:id="@+id/nav_Perfil"
+        android:name="com.example.tt_a106_v0.patient_fragments.DataUserFragment"
+        android:label="Perfil"
+        tools:layout="@layout/fragment_doctors" />
+
+    <fragment
+        android:id="@+id/nav_Medicamentos"
+        android:name="com.example.tt_a106_v0.patient_fragments.MedicationFragment"
+        android:label="Medicamentos"
+        tools:layout="@layout/fragment_medication" />
+
+    <fragment
+        android:id="@+id/nav_Dieta"
+        android:name="com.example.tt_a106_v0.patient_fragments.DietFragment"
+        android:label="Dieta"
+        tools:layout="@layout/fragment_diet" />
+
+    <fragment
+        android:id="@+id/nav_Glucosa"
+        android:name="com.example.tt_a106_v0.patient_fragments.GlucoseMeasurementsFragment"
+        android:label="Glucosa"
+        tools:layout="@layout/fragment_glucose_measurements" />
+
+    <activity
+        android:id="@+id/nav_dispGlucometer"
+        android:name="com.example.tt_a106_v0.patient_fragments.GlucometerFragment"
+        android:label="@string/menu_gluco"
+        tools:layout="@layout/fragment_glucometer"
+        />
+    <activity
+        android:id="@+id/nav_logOut"
+        />
+</navigation>

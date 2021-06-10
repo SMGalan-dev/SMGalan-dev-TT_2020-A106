@@ -19,11 +19,21 @@
             android:label="@string/title_activity_main_patient1"
             android:theme="@style/Theme.TT_A106_v0.NoActionBar" >
         </activity>
+        <activity
+            android:name=".MainActivityFamiliar"
+            android:label="MainActivityFamiliar"
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" >
+        </activity>
+        <activity
+            android:name=".MainActivityDoctor"
+            android:label="MainActivityDoctor"
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" >
+        </activity>
+
         <activity android:name=".Users_register.EndRegister" />
         <activity
             android:name=".Users_register.MainRegisterActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar" />
-        <activity android:name=".HomeActivity" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
         <activity
             android:name=".AuthActivity"
