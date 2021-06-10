@@ -66,7 +66,7 @@ class GlucometerFragment : AppCompatActivity() {
         val glucoseLevel = measurement
         val unit = unit
         val device = disp
-        val tst = ""
+        val date = date
         val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
         val Terminate = findViewById<Button>(R.id.saveGlucbtn)
 
@@ -76,7 +76,8 @@ class GlucometerFragment : AppCompatActivity() {
                 hashMapOf(
                     "glucoseLevel" to glucoseLevel,
                     "unit" to unit,
-                    "device" to device
+                    "device" to device,
+                    "date" to date
                 )
             )
             startActivity(intoUserIntent)
