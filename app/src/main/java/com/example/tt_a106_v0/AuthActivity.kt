@@ -2,16 +2,20 @@ package com.example.tt_a106_v0
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.*
+import android.widget.Button
+import android.widget.EditText
+import android.widget.RadioButton
+import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.Users_register.MainRegisterActivity
-import com.example.tt_a106_v0.databinding.ActivityAuthBinding
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 
 class AuthActivity : AppCompatActivity() {
     //SplashScreen
   //  private lateinit var binding: ActivityAuthBinding
+    private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         Thread.sleep(3000)
