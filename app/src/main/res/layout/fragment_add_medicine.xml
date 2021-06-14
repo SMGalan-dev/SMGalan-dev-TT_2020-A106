@@ -3,12 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".patient_fragments.MedicationFragment">
+    tools:context=".patient_fragments.AddMedicineFragment">
 
 
-    <Button
-        android:id="@+id/newMedicamentBtn"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/agregar_medicaci_n" />
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:hint="Seleccion de fecha" />
 </FrameLayout>

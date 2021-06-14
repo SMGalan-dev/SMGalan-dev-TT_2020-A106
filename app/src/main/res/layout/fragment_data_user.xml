@@ -143,6 +143,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nombre"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
