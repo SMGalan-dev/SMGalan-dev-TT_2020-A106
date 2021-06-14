@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.example.tt_a106_v0.R
 
 
@@ -24,12 +23,18 @@ class MedicationFragment : Fragment() {
         mView2=inflater.inflate(R.layout.fragment_add_medicine,container,false)
         val newMedicine = mView.findViewById<Button>(R.id.newMedicamentBtn)
         newMedicine.setOnClickListener {
+     /*
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.nav_host_fragment_content_main_activity_patient1, R.layout,fragment_)
             transaction?.commit()
 
+      */
+            val transaction2 = activity?.supportFragmentManager?.beginTransaction()?.apply {
+                replace(R.id.nav_host_fragment_container, AddMedicineFragment())
+                commit()
+            }
+
         }
-        newMedicine.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.AddMedicineFragment, null))
         return inflater.inflate(R.layout.fragment_medication, container, false)
     }
 

@@ -8,11 +8,9 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.tt_a106_v0.R
-import com.example.tt_a106_v0.bleglucometer.DatePickerFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import java.time.Month
 
 class AddMedicineFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -55,12 +53,18 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun showDatePickerDialog() {
+        /*
+
         val datePicker: DatePickerFragment{ day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(activity?.supportFragmentManager!!, "datePicker")
+         */
     }
+
+    /*
 
     private fun onDateSelected(day: Int, month: Int, year: Int): Any {
 
     }
+     */
 
 }
