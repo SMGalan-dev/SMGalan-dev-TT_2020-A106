@@ -24,5 +24,6 @@
     <string name="menu_gluco">Glucómetro</string>
     <string name="menu_fam">Familiares</string>
     <string name="menu_doc">Médicos</string>
+    <string name="agregar_medicaci_n">Agregar Medicación</string>
 
 </resources>
