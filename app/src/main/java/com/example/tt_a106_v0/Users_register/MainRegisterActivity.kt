@@ -28,7 +28,7 @@ class MainRegisterActivity : AppCompatActivity() {
         title = "Autenticación"
 
         cancelBtn.setOnClickListener {
-            Log.d("lala", "cancelBtn.setOnClickListener")
+            Log.d("Cancel", "cancelBtn.setOnClickListener")
             onBackPressed()
         }
 
@@ -44,7 +44,6 @@ class MainRegisterActivity : AppCompatActivity() {
 
             //val selectedtext = genero.getChildAt(idx).text.toString()
             if (email.text.isNotEmpty() && password.text.isNotEmpty() && password.text.toString() == passwordcheck.text.toString()) {
-
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
                             continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "")
@@ -53,7 +52,6 @@ class MainRegisterActivity : AppCompatActivity() {
                         }
                     }
                     Toast.makeText(this, "Continua el registro", Toast.LENGTH_SHORT).show()
-
             } else {
                 Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
 

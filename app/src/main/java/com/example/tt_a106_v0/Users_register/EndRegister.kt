@@ -49,7 +49,19 @@ class EndRegister : AppCompatActivity() {
             Log.d("ApPaterno", apPText.text.toString())
             Log.d("ApMaterno", apMText.text.toString())
             Log.d("Telefono", phoneReg.text.toString())
-
+            db.collection("persons").document(email).set(
+                hashMapOf(
+                    "name" to nameText.text.toString(),
+                    "lastName" to apPText.text.toString(),
+                    "mLastName" to apMText.text.toString(),
+                    "user_Type" to typeUser,
+                    "email" to email,
+                    //Añadir fecha de nacimiento
+                    "genre" to genre,
+                    "phone" to phoneReg.text.toString()
+                )
+            )
+            /*
             db.collection("users").document(email).set(
                 hashMapOf(
                     "user_Type" to typeUser,
@@ -61,6 +73,7 @@ class EndRegister : AppCompatActivity() {
                     "phone" to phoneReg.text.toString()
                 )
             )
+             */
             val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
             startActivity(intoUserIntent)
 

@@ -72,6 +72,15 @@ class GlucometerFragment : AppCompatActivity() {
 
         Terminate.setOnClickListener {
             Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
+            db.collection("persons").document(user.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
+                hashMapOf(
+                    "glucoseLevel" to glucoseLevel,
+                    "unit" to unit,
+                    "device" to device,
+                    "date" to date
+                )
+            )
+            /*
             db.collection("users").document(user.email.toString()).collection("glucoseTestRecords").document(date).set(
                 hashMapOf(
                     "glucoseLevel" to glucoseLevel,
@@ -80,6 +89,7 @@ class GlucometerFragment : AppCompatActivity() {
                     "date" to date
                 )
             )
+             */
             startActivity(intoUserIntent)
         }
 

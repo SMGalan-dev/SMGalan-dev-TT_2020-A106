@@ -21,7 +21,8 @@ class DataUserFragment : Fragment() {
         val user = Firebase.auth.currentUser
         mView=inflater.inflate(R.layout.fragment_data_user,container,false)
 
-        db.collection("users").document(user?.email.toString()).get().addOnSuccessListener {
+        //db.collection("users").document(user?.email.toString()).get().addOnSuccessListener {
+        db.collection("persons").document(user?.email.toString()).get().addOnSuccessListener {
             mView.findViewById<EditText>(R.id.twNamePatient).setText(it.get("name") as String?)
             mView.findViewById<EditText>(R.id.twLastNamePatient).setText(it.get("lastName") as String?)
             mView.findViewById<EditText>(R.id.twMLastNamePatient).setText(it.get("mLastName") as String?)
@@ -37,7 +38,7 @@ class DataUserFragment : Fragment() {
             val phoneReg = mView.findViewById<EditText>(R.id.twPhonePatient)
             val genreReg = mView.findViewById<EditText>(R.id.twGenrePatient)
             if (nameText.text.isNotEmpty() && apPText.text.isNotEmpty() && apMText.text.isNotEmpty() && phoneReg.text.isNotEmpty() && genreReg.text.isNotEmpty()){
-                db.collection("users").document(user?.email.toString()).set(
+                db.collection("persons").document(user?.email.toString()).set(
                     hashMapOf(
                         "genre" to genreReg.text.toString(),
                         "name" to nameText.text.toString(),
