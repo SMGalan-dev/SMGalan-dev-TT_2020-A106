@@ -46,12 +46,12 @@ class MainRegisterActivity : AppCompatActivity() {
             if (email.text.isNotEmpty() && password.text.isNotEmpty() && password.text.toString() == passwordcheck.text.toString()) {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
+                            Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
                             continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "")
                         } else{
-                            Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, "Campos incorrectos", Toast.LENGTH_SHORT).show()
                         }
                     }
-                    Toast.makeText(this, "Continua el registro", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(this, "Por favor, revise sus credenciales", Toast.LENGTH_SHORT).show()
 

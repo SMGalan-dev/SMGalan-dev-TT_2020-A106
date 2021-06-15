@@ -58,6 +58,8 @@
         android:layout_marginStart="32dp"
         android:ems="10"
         android:inputType="textPersonName"
+        android:clickable="false"
+        android:focusable="false"
         android:text="Apellido paterno"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
@@ -71,6 +73,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Apellido materno"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
@@ -84,6 +88,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Telefono"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName7" />
@@ -96,6 +102,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Nacimiento"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
@@ -108,6 +116,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Genero"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName8" />
@@ -120,6 +130,8 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Tipo de diabetes"
+        android:clickable="false"
+        android:focusable="false"
         android:textColor="@android:color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName9" />

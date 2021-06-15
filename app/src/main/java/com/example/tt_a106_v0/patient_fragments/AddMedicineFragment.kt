@@ -21,8 +21,8 @@ class AddMedicineFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val user = Firebase.auth.currentUser
         mView=inflater.inflate(R.layout.fragment_add_medicine,container,false)
-        val dateCh = mView.findViewById<EditText>(R.id.etDate)
-        val timeCh = mView.findViewById<EditText>(R.id.etTime)
+        val dateCh = mView.findViewById<EditText>(R.id.etAddMedicineDate)
+        val timeCh = mView.findViewById<EditText>(R.id.etAddMedicineTime)
         dateCh.setOnClickListener { showDatePickerDialog() }
         timeCh.setOnClickListener { showTimePickerDialog() }
 
@@ -62,7 +62,7 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun onDateSelected(day: Int, month: Int, year: Int)  {
-        mView.findViewById<EditText>(R.id.etDate).setText("Has seleccionado el $day del $month del año $year")
+        mView.findViewById<EditText>(R.id.etAddMedicineDate).setText("Has seleccionado el $day del $month del año $year")
     }
 
     private fun showTimePickerDialog() {
@@ -71,7 +71,7 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun onTimeSelected(hourOfDay: Int, minute: Int) {
-        mView.findViewById<EditText>(R.id.etTime).setText("Has seleccionado el $hourOfDay : $minute")
+        mView.findViewById<EditText>(R.id.etAddMedicineTime).setText("Has seleccionado el $hourOfDay : $minute")
 
     }
 
