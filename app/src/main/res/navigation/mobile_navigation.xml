@@ -43,7 +43,11 @@
         android:id="@+id/nav_Citas"
         android:name="com.example.tt_a106_v0.patient_fragments.CitesFragment"
         android:label="Citas"
-        tools:layout="@layout/fragment_cites" />
+        tools:layout="@layout/fragment_cites" >
+        <action
+            android:id="@+id/action_nav_Citas_to_addCiteFragment"
+            app:destination="@id/addCiteFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_Perfil"
@@ -87,4 +91,9 @@
         android:name="com.example.tt_a106_v0.patient_fragments.AddMedicineFragment"
         android:label="fragment_add_medicine"
         tools:layout="@layout/fragment_add_medicine" />
+    <fragment
+        android:id="@+id/addCiteFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.AddCiteFragment"
+        android:label="fragment_add_cite"
+        tools:layout="@layout/fragment_add_cite" />
 </navigation>

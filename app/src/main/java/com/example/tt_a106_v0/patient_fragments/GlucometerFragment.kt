@@ -63,7 +63,8 @@ class GlucometerFragment : AppCompatActivity() {
 
     private fun saveMeasurementData(measurement: String, unit: String, date: String, disp: String){
         var user = Firebase.auth.currentUser
-        val glucoseLevel = measurement
+
+        val glucoseLevel = String.format("%.1f", measurement)
         val unit = unit
         val device = disp
         val date = date
@@ -143,7 +144,7 @@ class GlucometerFragment : AppCompatActivity() {
             val measurement: GlucoseMeasurement? = intent.getSerializableExtra(BluetoothHandler.MEASUREMENT_GLUCOSE_EXTRA) as GlucoseMeasurement?
             if (measurement != null) {
                 measurementValue!!.text = java.lang.String.format(Locale.ENGLISH, "%.1f %s\n%s\n\nfrom %s", measurement.value, if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL", dateFormat.format(measurement.timestamp), peripheral.name)
-                Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
+                //Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
                 val measurementV = measurement.value.toString()
                 val unitM = if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL"
                 val dateM = dateFormat.format(measurement.timestamp).toString()

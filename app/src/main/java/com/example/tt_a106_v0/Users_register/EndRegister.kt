@@ -29,7 +29,6 @@ class EndRegister : AppCompatActivity() {
         val typeUser = bundle?.getString("typeUser")
         val genre = bundle?.getInt("genre")
         val email = bundle?.getString("email")
-        val genre2 = genre.toString()
         val genre3 = genreEsp(genre?.toInt()!!)
         val dataPat = findViewById<Button>(R.id.regDataPatientBtn)
 
@@ -126,27 +125,17 @@ class EndRegister : AppCompatActivity() {
                     "mLastName" to apMText.text.toString(),
                     "user_Type" to typeUser,
                     "email" to email,
-                    //Añadir fecha de nacimiento
                     "genre" to genre,
                     "phone" to phoneReg.text.toString(),
-                    "birthday" to birth.text.toString(),
-                    "diabetes_type" to typeDiabetes
+                    "birthday" to birth.text.toString()
 
                 )
             )
-            /*
-            db.collection("users").document(email).set(
+            db.collection("persons").document(email).collection("patient").document("patientInfo").set(
                 hashMapOf(
-                    "user_Type" to typeUser,
-                    "genre" to genre,
-                    //"email" to email,
-                    "name" to nameText.text.toString(),
-                    "lastName" to apPText.text.toString(),
-                    "mLastName" to apMText.text.toString(),
-                    "phone" to phoneReg.text.toString()
+                    "diabetes_type" to typeDiabetes
                 )
             )
-             */
             val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
             startActivity(intoUserIntent)
 

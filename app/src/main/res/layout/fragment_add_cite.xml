@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".patient_fragments.AddCiteFragment">
+
+    <EditText
+        android:id="@+id/tvAddCiteComment"
+        android:layout_width="218dp"
+        android:layout_height="66dp"
+        android:hint="Comentarios"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddNewCite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteMedic" />
+
+    <EditText
+        android:id="@+id/tvAddCiteTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Hora de la cita"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddCitePlace"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteDate" />
+
+    <EditText
+        android:id="@+id/tvAddCiteTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cita medica"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddCiteDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/tvAddCiteDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Fecha de la cita"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:clickable="false"
+        android:focusable="false"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddCiteTime"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteTitle" />
+
+    <EditText
+        android:id="@+id/tvAddCiteMedic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Medico"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddCiteComment"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCitePlace" />
+
+    <EditText
+        android:id="@+id/tvAddCitePlace"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Lugar de la cita"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/tvAddCiteMedic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteTime" />
+
+    <Button
+        android:id="@+id/btnAddNewCite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Crear Cita"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteComment" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
