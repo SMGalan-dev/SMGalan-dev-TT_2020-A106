@@ -6,4 +6,8 @@
     <dimen name="nav_header_height">176dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="nav_image">80dp</dimen>
+    <dimen  name="textSize">18sp</dimen>
+    <dimen name="bigTextSize">36sp</dimen>
+    <dimen name="smallTextSize">16sp</dimen>
+    <dimen name="fieldHeight">50dp</dimen>
 </resources>

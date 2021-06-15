@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Users_register.EndRegister">
+    tools:context=".Users_register.EndRegisterFam">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,26 +22,6 @@
             android:layout_marginBottom="16dp"
             android:text="¡Continue su registro!"
             android:textSize="@dimen/bigTextSize" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Selecciona tu tipo de diabetes"
-            android:textSize="@dimen/smallTextSize" />
-
-        <Spinner
-            android:id="@+id/SpinnerDiabetesType"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/fieldHeight"
-            android:layout_marginTop="16dp"
-            android:background="@drawable/spinner_style"
-            android:entries="@array/diabetestypelist"
-            android:prompt="@string/diabetestype1"
-            android:theme="@style/Spinner" />
-
-
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"

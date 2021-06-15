@@ -47,7 +47,12 @@ class MainRegisterActivity : AppCompatActivity() {
                     FirebaseAuth.getInstance().createUserWithEmailAndPassword(email.text.toString(), password.text.toString()).addOnCompleteListener {
                         if(it.isSuccessful){
                             Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
-                            continueReg(typeUser.toString(), genre, it.result?.user?.email ?: "")
+                            if(typeUser=="Paciente")
+                                continuePat(typeUser.toString(), genre, it.result?.user?.email ?: "")
+                            if(typeUser=="Familiar")
+                                continueFam(typeUser.toString(), genre, it.result?.user?.email ?: "")
+                            if (typeUser=="Médico")
+                                continueDoc(typeUser.toString(), genre, it.result?.user?.email ?: "")
                         } else{
                             Toast.makeText(this, "Campos incorrectos", Toast.LENGTH_SHORT).show()
                         }
@@ -61,8 +66,25 @@ class MainRegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun continueReg(typeUser: String, genre: Int, email:String){
+    private fun continuePat(typeUser: String, genre: Int, email:String){
         val continueRegIntent = Intent(this, EndRegister::class.java).apply {
+            putExtra("typeUser", typeUser)
+            putExtra("genre", genre)
+            putExtra("email", email)
+        }
+        startActivity(continueRegIntent)
+    }
+    private fun continueFam(typeUser: String, genre: Int, email:String){
+        val continueRegIntent = Intent(this, EndRegisterFam::class.java).apply {
+            putExtra("typeUser", typeUser)
+            putExtra("genre", genre)
+            putExtra("email", email)
+        }
+        startActivity(continueRegIntent)
+    }
+
+    private fun continueDoc(typeUser: String, genre: Int, email:String){
+        val continueRegIntent = Intent(this, EndRegisterDoc::class.java).apply {
             putExtra("typeUser", typeUser)
             putExtra("genre", genre)
             putExtra("email", email)

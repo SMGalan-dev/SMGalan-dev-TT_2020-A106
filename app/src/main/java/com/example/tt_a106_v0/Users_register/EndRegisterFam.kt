@@ -1,6 +1,6 @@
 package com.example.tt_a106_v0.Users_register
 
-import android.annotation.SuppressLint
+import com.example.tt_a106_v0.DateInputMask
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -8,21 +8,21 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Spinner
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.tt_a106_v0.MainActivityFamiliar
 import com.example.tt_a106_v0.MainActivityPatient1
 import com.example.tt_a106_v0.R
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.*
 
-class EndRegister : AppCompatActivity() {
+class EndRegisterFam : AppCompatActivity() {
 
     private val db = FirebaseFirestore.getInstance()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_end_register)
+        setContentView(R.layout.activity_end_register_fam)
 
         // Patient Data Upload
         val bundle = intent.extras
@@ -97,19 +97,16 @@ class EndRegister : AppCompatActivity() {
         }
 
     }
-    @SuppressLint("LogNotTimber")
     private fun dataPatientReg(typeUser: String, genre: String, email:String){
         val nameText = findViewById<EditText>(R.id.editTextRegName)
         val apPText = findViewById<EditText>(R.id.editTextTRegApPaterno)
         val apMText = findViewById<EditText>(R.id.editTextRegApMaterno)
         val phoneReg = findViewById<EditText>(R.id.editTextRegPhone)
-        val typeDiabetesCheck = findViewById<Spinner>(R.id.SpinnerDiabetesType)
-        val typeDiabetes = typeDiabetesCheck.selectedItem.toString()
         val birth = findViewById<EditText>(R.id.editTextBirth)
 
         //val intoUserIntent = Intent(this, MainActivityPatient::class.java)
-            //startActivity(intoUserIntent)
-        if (nameText.text.isNotEmpty() && apPText.text.isNotEmpty() && apMText.text.isNotEmpty() && phoneReg.text.isNotEmpty() && birth.text.isNotEmpty()){
+        //startActivity(intoUserIntent)
+        if (nameText.text.isNotEmpty() && apPText.text.isNotEmpty() && apMText.text.isNotEmpty() && phoneReg.text.isNotEmpty()){
             Log.d("typeUser", typeUser.toString())
             Log.d("Genero", genre.toString())
             Log.d("email", email.toString())
@@ -118,7 +115,6 @@ class EndRegister : AppCompatActivity() {
             Log.d("ApMaterno", apMText.text.toString())
             Log.d("Telefono", phoneReg.text.toString())
             Log.d("Nacimiento", birth.text.toString())
-            Log.d("typeDiabetes" , typeDiabetes)
             db.collection("persons").document(email).set(
                 hashMapOf(
                     "name" to nameText.text.toString(),
@@ -129,9 +125,7 @@ class EndRegister : AppCompatActivity() {
                     //Añadir fecha de nacimiento
                     "genre" to genre,
                     "phone" to phoneReg.text.toString(),
-                    "birthday" to birth.text.toString(),
-                    "diabetes_type" to typeDiabetes
-
+                    "birthday" to birth.text.toString()
                 )
             )
             /*
@@ -147,10 +141,10 @@ class EndRegister : AppCompatActivity() {
                 )
             )
              */
-            val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
+            val intoUserIntent = Intent(this, MainActivityFamiliar::class.java)
             startActivity(intoUserIntent)
 
-            } else{
+        } else{
             Toast.makeText(this, "Por favor, rellene todos los campos", Toast.LENGTH_SHORT).show()
         }
 
