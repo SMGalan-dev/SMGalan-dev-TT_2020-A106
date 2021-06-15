@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import com.example.tt_a106_v0.R
+import com.example.tt_a106_v0.bleglucometer.DatePickerFragment
+import com.example.tt_a106_v0.bleglucometer.TimePickerFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
@@ -20,7 +22,9 @@ class AddMedicineFragment : Fragment() {
         val user = Firebase.auth.currentUser
         mView=inflater.inflate(R.layout.fragment_add_medicine,container,false)
         val dateCh = mView.findViewById<EditText>(R.id.etDate)
+        val timeCh = mView.findViewById<EditText>(R.id.etTime)
         dateCh.setOnClickListener { showDatePickerDialog() }
+        timeCh.setOnClickListener { showTimePickerDialog() }
 
         /*
 
@@ -53,18 +57,23 @@ class AddMedicineFragment : Fragment() {
     }
 
     private fun showDatePickerDialog() {
-        /*
-
-        val datePicker: DatePickerFragment{ day, month, year -> onDateSelected(day, month, year)}
+        val datePicker= DatePickerFragment{ day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(activity?.supportFragmentManager!!, "datePicker")
-         */
     }
 
-    /*
+    private fun onDateSelected(day: Int, month: Int, year: Int)  {
+        mView.findViewById<EditText>(R.id.etDate).setText("Has seleccionado el $day del $month del año $year")
+    }
 
-    private fun onDateSelected(day: Int, month: Int, year: Int): Any {
+    private fun showTimePickerDialog() {
+        val timePicker = TimePickerFragment { hourOfDay, minute ->  onTimeSelected(hourOfDay, minute)}
+        timePicker.show(activity?.supportFragmentManager!!, "datePicker")
+    }
+
+    private fun onTimeSelected(hourOfDay: Int, minute: Int) {
+        mView.findViewById<EditText>(R.id.etTime).setText("Has seleccionado el $hourOfDay : $minute")
 
     }
-     */
+
 
 }
