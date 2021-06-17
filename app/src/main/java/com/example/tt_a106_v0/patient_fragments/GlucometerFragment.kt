@@ -64,7 +64,7 @@ class GlucometerFragment : AppCompatActivity() {
     private fun saveMeasurementData(measurement: String, unit: String, date: String, disp: String){
         var user = Firebase.auth.currentUser
 
-        val glucoseLevel = String.format("%.1f", measurement)
+        val glucoseLevel = measurement
         val unit = unit
         val device = disp
         val date = date
@@ -73,7 +73,7 @@ class GlucometerFragment : AppCompatActivity() {
 
         Terminate.setOnClickListener {
             Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
-            db.collection("persons").document(user.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
+            db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
                 hashMapOf(
                     "glucoseLevel" to glucoseLevel,
                     "unit" to unit,
@@ -145,7 +145,9 @@ class GlucometerFragment : AppCompatActivity() {
             if (measurement != null) {
                 measurementValue!!.text = java.lang.String.format(Locale.ENGLISH, "%.1f %s\n%s\n\nfrom %s", measurement.value, if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL", dateFormat.format(measurement.timestamp), peripheral.name)
                 //Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
-                val measurementV = measurement.value.toString()
+
+                val measurementV = String.format("%.1f", measurement.value.toFloat())
+                //val measurementV = measurement.value.toString()
                 val unitM = if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL"
                 val dateM = dateFormat.format(measurement.timestamp).toString()
                 val dispM = peripheral.name.toString()
