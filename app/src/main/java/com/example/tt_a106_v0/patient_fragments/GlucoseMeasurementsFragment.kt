@@ -26,7 +26,6 @@ class GlucoseMeasurementsFragment : Fragment(), GlucoseAdapter.GlucoseAdapterLis
         val user = Firebase.auth.currentUser
         mView=inflater.inflate(R.layout.fragment_glucose_measurements,container,false)
         val query: Query = FirebaseFirestore.getInstance().collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords")
-        //val query: Query = FirebaseFirestore.getInstance().collection("users").document(user?.email.toString()).collection("glucoseTestRecords")
         // Inflate the layout for this fragment
         val recyclerView = mView.findViewById<RecyclerView>(R.id.recyclerGlucoseData)
         adapter = GlucoseAdapter(query, this)
