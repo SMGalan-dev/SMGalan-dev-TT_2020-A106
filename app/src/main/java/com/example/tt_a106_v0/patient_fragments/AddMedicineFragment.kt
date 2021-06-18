@@ -20,13 +20,13 @@ import com.google.firebase.ktx.Firebase
 class AddMedicineFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
     private lateinit var mView: View
-    var day: Int = 0
-    var month: Int = 0
-    var year: Int = 0
-    var hourOfDay: Int = 0
-    var minute: Int = 0
+    private var day: Int = 0
+    private var month: Int = 0
+    private var year: Int = 0
+    private var hourOfDay: Int = 0
+    private var minute: Int = 0
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val user = Firebase.auth.currentUser
         val person = user?.email.toString()
         mView=inflater.inflate(R.layout.fragment_add_medicine,container,false)
