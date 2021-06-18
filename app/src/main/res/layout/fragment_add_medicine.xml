@@ -20,7 +20,7 @@
 
 
     <EditText
-        android:id="@+id/etAddFrecuencia"
+        android:id="@+id/etAddMedFrecuencia"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Frecuencia de ingesta"
@@ -61,13 +61,33 @@
         app:layout_constraintTop_toBottomOf="@+id/etAddMedicineDate" />
 
     <EditText
-        android:id="@+id/etAddcomment"
+        android:id="@+id/etAddMedType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="Tipo de medicamento"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/etAddMedFrecuencia"
+        app:layout_constraintTop_toBottomOf="@+id/etAddMedFrecuencia" />
+
+    <EditText
+        android:id="@+id/etAddMedComment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:hint="Comentario"
         android:textColor="@color/white"
         android:textColorHint="@color/white"
-        app:layout_constraintStart_toStartOf="@+id/etAddFrecuencia"
-        app:layout_constraintTop_toBottomOf="@+id/etAddFrecuencia" />
+        app:layout_constraintTop_toBottomOf="@+id/etAddMedType"
+        app:layout_constraintStart_toStartOf="@+id/etAddMedFrecuencia" />
+
+    <Button
+        android:id="@+id/btnAddNewMed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etAddMedComment" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
