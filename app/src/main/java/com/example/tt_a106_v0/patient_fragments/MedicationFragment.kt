@@ -47,5 +47,14 @@ class MedicationFragment : Fragment(), MedicationAdapter.MedicationAdapterListen
     override fun onMedicationSelected(medication: MedicationStructInDB?) {
         Toast.makeText(activity, "No OnMedicationSelected Detail frame", Toast.LENGTH_SHORT).show()
     }
+    override fun onStart() {
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        adapter.startListening()
+    }
 
 }

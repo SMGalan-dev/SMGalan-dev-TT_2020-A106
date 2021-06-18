@@ -32,12 +32,12 @@ class MedicationAdapter(
         fun bind(snapshot: DocumentSnapshot, listener: MedicationAdapterListener) {
             val medication: MedicationStructInDB? = snapshot.toObject(MedicationStructInDB::class.java)
             date.text = medication?.date
-            name.text = medication?.date
-            type.text = medication?.date
-            time.text = medication?.date
-            dosis.text = medication?.date
-            frequency.text = medication?.date
-            comment.text = medication?.date
+            name.text = medication?.name
+            type.text = medication?.type
+            time.text = medication?.time
+            dosis.text = medication?.dosis
+            frequency.text = medication?.frequency
+            comment.text = medication?.comment
 
             cardView.setOnClickListener {
                 listener.onMedicationSelected(medication)

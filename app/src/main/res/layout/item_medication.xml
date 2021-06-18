@@ -80,8 +80,9 @@
             android:textAppearance="?attr/textAppearanceSubtitle1"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/twItemMedFirstTime"
+            app:layout_constraintStart_toEndOf="@+id/twItemMed5"
             app:layout_constraintTop_toBottomOf="@+id/twItemMedComment"
-            tools:text="Comienzo Dia-Mes-Año" />
+            tools:text="Dia-Mes-Año" />
 
         <TextView
             android:id="@+id/twItemMedFirstTime"
@@ -94,6 +95,17 @@
             app:layout_constraintTop_toBottomOf="@+id/twItemMedComment"
             tools:text=" Hora" />
 
+        <TextView
+            android:id="@+id/twItemMed5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Fecha y hora de registro:"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twItemMedComment"
+            tools:text=" Fecha y hora de registro:" />
 
 
 
