@@ -11,9 +11,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.tt_a106_v0.R
+import com.example.tt_a106_v0.bleglucometer.DietsAdapter
+import com.example.tt_a106_v0.bleglucometer.DietsDocsStructInDB
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -21,7 +25,7 @@ import com.google.firebase.storage.ktx.storage
 import java.text.SimpleDateFormat
 import java.util.*
 
-class DietFragment : Fragment() {
+class DietFragment : Fragment(), DietsAdapter.DietsAdapterListener {
     private val db = FirebaseFirestore.getInstance()
     var user = Firebase.auth.currentUser
     private lateinit var mView: View
@@ -29,6 +33,7 @@ class DietFragment : Fragment() {
     lateinit var storageReference: StorageReference
     var storage = Firebase.storage//
     lateinit var currentDate: String
+    private lateinit var adapter: DietsAdapter
 
     companion object{
         private val PICK_IMAGE_CODE = 1000
@@ -90,10 +95,41 @@ class DietFragment : Fragment() {
             intent.action = Intent.ACTION_GET_CONTENT
             startActivityForResult(Intent.createChooser(intent, "select Document"), PICK_IMAGE_CODE)
         }
+
+
+        Log.e("query", "start")
+        val query: Query = FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("dietsDocsRef")
+
+        // Inflate the layout for this fragment
+        val recyclerView = mView.findViewById<RecyclerView>(R.id.rwDiets)
+        adapter = DietsAdapter(query, this)
+        recyclerView.adapter = adapter
+        adapter.stateRestorationPolicy = RecyclerView.Adapter.StateRestorationPolicy.PREVENT_WHEN_EMPTY
+        Log.e("end", "ENDDIET")
+
         return mView
     }
 
+    override fun onDietSelected(diet: DietsDocsStructInDB?) {
+        Toast.makeText(activity, "No OnDietSelected Detail frame", Toast.LENGTH_SHORT).show()
+        /*
+        val intent = Intent(applicationContext, DetailActivity::class.java)
+        intent.putExtra("SPORTS_DETAIL_DATA", sports)
+        startActivity(intent)
 
+         */
+    }
+    override fun onStart() {
+        Log.e("onstart", "start")
+        super.onStart()
+        adapter.startListening()
+    }
+
+    override fun onStop() {
+        Log.e("inStop", "stop")
+        super.onStop()
+        adapter.startListening()
+    }
 
 
 }
