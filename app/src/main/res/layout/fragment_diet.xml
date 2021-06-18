@@ -5,9 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".patient_fragments.DietFragment">
 
-    <Button
-        android:id="@+id/btnUploadDiet"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="69dp"
-        android:text="Cargar dieta" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/btnUploadDiet"
+            android:layout_width="match_parent"
+            android:layout_height="69dp"
+            android:text="Cargar dieta" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rwDiets"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/item_diets"/>
+    </LinearLayout>
+
 </FrameLayout>
