@@ -13,6 +13,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.tt_a106_v0.R
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
@@ -21,11 +22,13 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class DietFragment : Fragment() {
+    private val db = FirebaseFirestore.getInstance()
     var user = Firebase.auth.currentUser
     private lateinit var mView: View
     lateinit var alertDialog: AlertDialog
     lateinit var storageReference: StorageReference
     var storage = Firebase.storage//
+    lateinit var currentDate: String
 
     companion object{
         private val PICK_IMAGE_CODE = 1000
@@ -50,6 +53,14 @@ class DietFragment : Fragment() {
                     val downloadUri = task.result
                     val url = downloadUri!!.toString()
                     Log.d("URI", url)
+
+                    db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("dietsDocsRef").document(currentDate).set(
+                        hashMapOf(
+                            "date" to currentDate,
+                            "url" to url
+                        )
+                    )
+
                     Toast.makeText(activity, "Carga con éxito", Toast.LENGTH_SHORT).show()
                     //alertDialog.dismiss()
                 }
@@ -68,17 +79,9 @@ class DietFragment : Fragment() {
         //alertDialog = SpotsDialog
         val person = user?.email.toString()
         val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
-        val currentDate = sdf.format(Date())
+        currentDate = sdf.format(Date())
         var pathref = String.format("%s/diets/%s", person, currentDate.toString())
         storageReference = FirebaseStorage.getInstance().getReference(pathref)
-        //val storageRef = storage.reference
-        //val dietsRef = storageRef.child()
-/*
-
-        val folder: StorageReference = FirebaseStorage.getInstance().reference.child("User")
-        val path =mUri.lastPathSegment.toString()
-        val fileName: StorageReference = folder.child(path.substring(path.lastIndexOf('/')+1))
- */
 
         val upDiet = mView.findViewById<Button>(R.id.btnUploadDiet)
         upDiet.setOnClickListener {
