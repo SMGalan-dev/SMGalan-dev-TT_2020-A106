@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_cite_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:layout_marginTop="6dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="149dp"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/twItemCiteDate"
+            android:layout_width="142dp"
+            android:layout_height="23dp"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twItemCiteTitle"
+            tools:text="Dia-Mes-Año" />
+
+        <TextView
+            android:id="@+id/twItemCiteTime"
+            android:layout_width="95dp"
+            android:layout_height="23dp"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintEnd_toStartOf="@+id/twItemCiteDate"
+            app:layout_constraintTop_toBottomOf="@+id/twItemCiteTitle"
+            tools:text="Hora" />
+
+        <TextView
+            android:id="@+id/twItemCiteMedic"
+            android:layout_width="95dp"
+            android:layout_height="23dp"
+            android:textAlignment="textStart"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twItemCiteTime"
+            tools:text="Medico" />
+
+        <TextView
+            android:id="@+id/twItemCiteComment"
+            android:layout_width="337dp"
+            android:layout_height="54dp"
+            android:textAlignment="textStart"
+            android:textAppearance="?attr/textAppearanceSubtitle1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/twItemCiteMedic"
+            tools:text="Comentarios" />
+
+        <TextView
+            android:id="@+id/twItemCitePlace"
+            android:layout_width="95dp"
+            android:layout_height="23dp"
+            android:textAlignment="textEnd"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toEndOf="@+id/twItemCiteMedic"
+            app:layout_constraintTop_toBottomOf="@+id/twItemCiteTime"
+            tools:text="Lugar" />
+
+        <TextView
+            android:id="@+id/twItemCiteTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="4dp"
+            android:layout_marginTop="16dp"
+            android:text="Titulo"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>

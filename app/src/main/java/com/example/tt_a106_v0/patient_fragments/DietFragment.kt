@@ -120,13 +120,11 @@ class DietFragment : Fragment(), DietsAdapter.DietsAdapterListener {
          */
     }
     override fun onStart() {
-        Log.e("onstart", "start")
         super.onStart()
         adapter.startListening()
     }
 
     override fun onStop() {
-        Log.e("inStop", "stop")
         super.onStop()
         adapter.startListening()
     }
