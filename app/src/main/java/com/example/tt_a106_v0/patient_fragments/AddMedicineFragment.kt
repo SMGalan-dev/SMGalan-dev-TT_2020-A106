@@ -23,8 +23,8 @@ class AddMedicineFragment : Fragment() {
     var day: Int = 0
     var month: Int = 0
     var year: Int = 0
-    var hour: Int = 0
-    var minutes: Int = 0
+    var hourOfDay: Int = 0
+    var minute: Int = 0
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val user = Firebase.auth.currentUser
@@ -43,7 +43,7 @@ class AddMedicineFragment : Fragment() {
         val addMed = mView.findViewById<Button>(R.id.btnAddNewMed)
         addMed.setOnClickListener {
             val dateF = String.format("%02d-%02d-%02d", day, month, year)
-            val timeF = String.format("%02d:%02d", hour, minutes)
+            val timeF = String.format("%02d:%02d", hourOfDay, minute)
             val date = String.format("%s %s", dateF, timeF)
             if (dateCh.text.isNotEmpty() && timeCh.text.isNotEmpty() && addDosis.text.isNotEmpty() && addMedName.text.isNotEmpty()){
                 db.collection("persons").document(person).collection("patient").document("patientInfo").collection("medicationRegister").document(date).set(
@@ -64,6 +64,7 @@ class AddMedicineFragment : Fragment() {
                 Log.d("dosis", addDosis.text.toString())
                 Log.d("freq", addFreq.text.toString())
                 Log.d("commen", addcomment.text.toString())
+                Log.e("DATE", date)
                 Toast.makeText(activity, "Medicación creada", Toast.LENGTH_SHORT).show()
             }else{
                 Toast.makeText(activity, "Por favor, rellene los campos basicos", Toast.LENGTH_SHORT).show()
@@ -93,7 +94,8 @@ class AddMedicineFragment : Fragment() {
 
     private fun onTimeSelected(hourOfDay: Int, minute: Int) {
         mView.findViewById<EditText>(R.id.etAddMedicineTime).setText("$hourOfDay : $minute")
-
+        this.hourOfDay = hourOfDay
+        this.minute = minute
     }
 
 
