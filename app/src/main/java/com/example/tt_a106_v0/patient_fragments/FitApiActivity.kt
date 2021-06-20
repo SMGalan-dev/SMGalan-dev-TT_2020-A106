@@ -7,6 +7,7 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.R
@@ -48,13 +49,15 @@ class FitApiActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fitapi)
 
+        val myJob: Job = startRepeatingJob(2000L)
         val btn = findViewById<Button>(R.id.buttontestfit)
         btn.setOnClickListener {
-            connectToGoogleFit()
+            Log.e("GOOGLE_FIT", "HeartRateScanSTOPED")
+            myJob.cancel()
+            Toast.makeText(this, "Monitoreo de pulso detenido", Toast.LENGTH_SHORT).show()
         }
         connectToGoogleFit()
 
-        val myJob: Job = startRepeatingJob(1000L)
         // To Stop:
         // myJob.cancel()
     }
@@ -111,6 +114,7 @@ class FitApiActivity : AppCompatActivity(){
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun accessGoogleFit() {
+        //Log.e("GOOGLE_FIT", "Heartratescan")
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
         val startTime = endTime.minusMinutes(10)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)

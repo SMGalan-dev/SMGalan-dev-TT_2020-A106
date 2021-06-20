@@ -29,6 +29,6 @@ limitations under the License.
         android:id="@+id/buttontestfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Realmente no util despues del loop" />
+        android:text="Detener monitoreo" />
 </RelativeLayout>
 
