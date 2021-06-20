@@ -7,6 +7,10 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
+    <uses-permission android:name="android.permission.ACTIVITY_RECOGNITION"/>
+    <uses-permission android:name="android.permission.BODY_SENSORS"/>
+
+
     <application
         android:usesCleartextTraffic="true"
         android:allowBackup="true"
@@ -38,6 +42,9 @@
             android:theme = "@style/Theme.TT_A106_v0.NoActionBar"/>
         <activity
             android:name=".Users_register.MainRegisterActivity"
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
+        <activity
+            android:name=".patient_fragments.FitApiActivity"
             android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
         <activity

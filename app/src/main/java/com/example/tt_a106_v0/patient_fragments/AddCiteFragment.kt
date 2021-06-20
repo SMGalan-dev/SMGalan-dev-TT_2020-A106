@@ -51,7 +51,7 @@ class AddCiteFragment : Fragment() {
 
 
             if (date.text.isNotEmpty() && time.text.isNotEmpty()){
-                db.collection("persons").document(user.email.toString()).collection("patient").document("patientInfo").collection("citesRegister").document(citeID).set(
+                db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("citesRegister").document(citeID).set(
                     hashMapOf(
                         "title" to title.text.toString(),
                         "date" to date.text.toString(),

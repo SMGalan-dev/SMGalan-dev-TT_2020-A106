@@ -54,6 +54,10 @@ class HomeFragment : Fragment() {
       findNavController().navigate(R.id.action_nav_homePatient_to_nav_Glucosa)
       //Toast.makeText(activity, "Datos actualizados", Toast.LENGTH_SHORT).show()
     }
+    binding.menuHeartPatient.setOnClickListener {
+      findNavController().navigate(R.id.action_nav_homePatient_to_fitApiActivity)
+      //Toast.makeText(activity, "Datos actualizados", Toast.LENGTH_SHORT).show()
+    }
   }
 
 override fun onDestroyView() {

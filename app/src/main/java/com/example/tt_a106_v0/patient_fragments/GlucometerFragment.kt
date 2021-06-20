@@ -48,6 +48,7 @@ class GlucometerFragment : AppCompatActivity() {
         measurementValue = findViewById<View>(R.id.searchingDispText) as? TextView
         registerReceiver(locationServiceStateReceiver, IntentFilter(LocationManager.MODE_CHANGED_ACTION))
         registerReceiver(glucoseDataReceiver, IntentFilter(BluetoothHandler.MEASUREMENT_GLUCOSE))
+        Log.e("1", "1")
 
 
 
@@ -62,18 +63,27 @@ class GlucometerFragment : AppCompatActivity() {
     }
 
     private fun saveMeasurementData(measurement: String, unit: String, date: String, disp: String){
+        Log.e("1", "2")
         var user = Firebase.auth.currentUser
 
-        val glucoseLevel = String.format("%.1f", measurement)
+        val glucoseLevel = measurement
         val unit = unit
         val device = disp
         val date = date
         val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
         val Terminate = findViewById<Button>(R.id.saveGlucbtn)
 
+        Toast.makeText(this, "Registro de glucosa $glucoseLevel $unit", Toast.LENGTH_LONG).show()
+        db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
+            hashMapOf(
+                "glucoseLevel" to glucoseLevel,
+                "unit" to unit,
+                "device" to device,
+                "date" to date
+            )
+        )
         Terminate.setOnClickListener {
-            Toast.makeText(this, "Datos Guardados", Toast.LENGTH_SHORT).show()
-            db.collection("persons").document(user.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
+            db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
                 hashMapOf(
                     "glucoseLevel" to glucoseLevel,
                     "unit" to unit,
@@ -81,16 +91,6 @@ class GlucometerFragment : AppCompatActivity() {
                     "date" to date
                 )
             )
-            /*
-            db.collection("users").document(user.email.toString()).collection("glucoseTestRecords").document(date).set(
-                hashMapOf(
-                    "glucoseLevel" to glucoseLevel,
-                    "unit" to unit,
-                    "device" to device,
-                    "date" to date
-                )
-            )
-             */
             startActivity(intoUserIntent)
         }
 
@@ -98,6 +98,7 @@ class GlucometerFragment : AppCompatActivity() {
 
 
     override fun onResume() {
+        Log.e("1", "3")
         super.onResume()
         if (BluetoothAdapter.getDefaultAdapter() != null) {
             if (!isBluetoothEnabled) {
@@ -119,10 +120,12 @@ class GlucometerFragment : AppCompatActivity() {
         }
 
     private fun initBluetoothHandler() {
+        Log.e("1", "4")
         BluetoothHandler.getInstance(applicationContext)
     }
 
     override fun onDestroy() {
+        Log.e("1", "5")
         super.onDestroy()
         unregisterReceiver(locationServiceStateReceiver)
         unregisterReceiver(glucoseDataReceiver)
@@ -130,6 +133,8 @@ class GlucometerFragment : AppCompatActivity() {
 
     private val locationServiceStateReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+
+            Log.e("1", "6")
             val action = intent.action
             if (action != null && action == LocationManager.MODE_CHANGED_ACTION) {
                 val isEnabled = areLocationServicesEnabled()
@@ -140,12 +145,15 @@ class GlucometerFragment : AppCompatActivity() {
     }
     private val glucoseDataReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
+            Log.e("1", "7")
             val peripheral = getPeripheral(intent.getStringExtra(BluetoothHandler.MEASUREMENT_EXTRA_PERIPHERAL))
             val measurement: GlucoseMeasurement? = intent.getSerializableExtra(BluetoothHandler.MEASUREMENT_GLUCOSE_EXTRA) as GlucoseMeasurement?
             if (measurement != null) {
                 measurementValue!!.text = java.lang.String.format(Locale.ENGLISH, "%.1f %s\n%s\n\nfrom %s", measurement.value, if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL", dateFormat.format(measurement.timestamp), peripheral.name)
                 //Log.e("MMMMMMMMMMMMMMMMEEEEsuu",measurementValue!!.text.toString() )
-                val measurementV = measurement.value.toString()
+
+                val measurementV = String.format("%.1f", measurement.value.toFloat())
+                //val measurementV = measurement.value.toString()
                 val unitM = if (measurement.unit === GlucoseMeasurementUnit.MmolPerLiter) "mmol/L" else "mg/dL"
                 val dateM = dateFormat.format(measurement.timestamp).toString()
                 val dispM = peripheral.name.toString()
@@ -159,11 +167,13 @@ class GlucometerFragment : AppCompatActivity() {
     }
 
     private fun getPeripheral(peripheralAddress: String?): BluetoothPeripheral {
+        Log.e("1", "8")
         val central: BluetoothCentralManager = BluetoothHandler.getInstance(applicationContext).central
         return central.getPeripheral(peripheralAddress!!)
     }
 
     private fun checkPermissions() {
+        Log.e("1", "9")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             val missingPermissions = getMissingPermissions(requiredPermissions)
             if (missingPermissions.isNotEmpty()) {
@@ -175,6 +185,7 @@ class GlucometerFragment : AppCompatActivity() {
     }
 
     private fun getMissingPermissions(requiredPermissions: Array<String>): Array<String> {
+        Log.e("1", "10")
         val missingPermissions: MutableList<String> = ArrayList()
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             for (requiredPermission in requiredPermissions) {
@@ -188,11 +199,13 @@ class GlucometerFragment : AppCompatActivity() {
 
     private val requiredPermissions: Array<String>
         get() {
+            Log.e("1", "11")
             val targetSdkVersion = applicationInfo.targetSdkVersion
             return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q && targetSdkVersion >= Build.VERSION_CODES.Q) arrayOf(Manifest.permission.ACCESS_FINE_LOCATION) else arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION)
         }
 
     private fun permissionsGranted() {
+        Log.e("1", "12")
         // Check if Location services are on because they are required to make scanning work
         if (checkLocationServices()) {
             initBluetoothHandler()
@@ -200,6 +213,7 @@ class GlucometerFragment : AppCompatActivity() {
     }
 
     private fun areLocationServicesEnabled(): Boolean {
+        Log.e("1", "13")
         val locationManager = applicationContext.getSystemService(LOCATION_SERVICE) as LocationManager
         if (locationManager == null) {
             Timber.e("could not get location manager")
@@ -211,6 +225,8 @@ class GlucometerFragment : AppCompatActivity() {
     }
 
     private fun checkLocationServices(): Boolean {
+
+        Log.e("1", "14")
         return if (!areLocationServicesEnabled()) {
             AlertDialog.Builder(this@GlucometerFragment)
                     .setTitle("Location services are not enabled")
@@ -233,6 +249,7 @@ class GlucometerFragment : AppCompatActivity() {
 
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        Log.e("1", "15")
 
         // Check if all permission were granted
         var allGranted = true
