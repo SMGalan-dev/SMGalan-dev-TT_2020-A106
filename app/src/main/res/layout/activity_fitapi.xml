@@ -15,7 +15,7 @@ limitations under the License.
 -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_activity_view"
+    android:id="@+id/fitapi_activity_view"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -29,6 +29,6 @@ limitations under the License.
         android:id="@+id/buttontestfit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="Realmente no util despues del loop" />
 </RelativeLayout>
 

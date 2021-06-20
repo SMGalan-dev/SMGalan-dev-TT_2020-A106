@@ -103,5 +103,5 @@
         android:id="@+id/fitApiActivity"
         android:name="com.example.tt_a106_v0.patient_fragments.FitApiActivity"
         android:label="activity_main"
-        tools:layout="@layout/activity_main" />
+        tools:layout="@layout/activity_fitapi" />
 </navigation>

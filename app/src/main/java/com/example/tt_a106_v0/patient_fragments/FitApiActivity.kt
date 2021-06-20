@@ -17,6 +17,9 @@ import com.google.android.gms.fitness.data.DataPoint
 import com.google.android.gms.fitness.data.DataSet
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.request.DataReadRequest
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
 import kotlinx.coroutines.*
 import java.time.Instant
 import java.time.LocalDateTime
@@ -26,6 +29,9 @@ import java.util.concurrent.TimeUnit
 
 
 class FitApiActivity : AppCompatActivity(){
+    private val db = FirebaseFirestore.getInstance()
+    val user = Firebase.auth.currentUser
+    val person = user?.email.toString()
     private var GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1 //whatever you want
     //private var dataPointListener: OnDataPointListener? = null
 
@@ -40,7 +46,7 @@ class FitApiActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_fitapi)
 
         val btn = findViewById<Button>(R.id.buttontestfit)
         btn.setOnClickListener {
@@ -105,18 +111,16 @@ class FitApiActivity : AppCompatActivity(){
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun accessGoogleFit() {
-        //
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
-        val startTime = endTime.minusMinutes(50)                                              //MODIFICAR INTERVALO AL MINIMO
+        val startTime = endTime.minusMinutes(10)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)
-        Log.e("accessGoogleFit1", "Range Start: $endTime")
-
-        Log.e("accessGoogleFit2", "Range End  : $endTime")
+        //Log.e("accessGoogleFit1", "Range Start: $endTime")
+        //Log.e("accessGoogleFit2", "Range End  : $endTime")
 
         val readRequest =
             DataReadRequest.Builder()
                 .aggregate(DataType.TYPE_HEART_RATE_BPM)
-                .bucketByTime(5, TimeUnit.MINUTES)
+                .bucketByTime(1, TimeUnit.MINUTES)
                 .setTimeRange(startTime.toEpochSecond(), endTime.toEpochSecond(), TimeUnit.SECONDS)
                 .build()
 
@@ -137,15 +141,33 @@ class FitApiActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("LogNotTimber")
     fun dumpDataSet(dataSet: DataSet) {
-        //Log.i("dumpDataSet", "Data returned for Data type: ${dataSet.dataType.name}")
+        //Log.i("dumpDataSet", "Data returned dumpDataSet")
         for (dp in dataSet.dataPoints) {
+            val dateID = String.format("%16.16s", dp.getEndTimeString())
+            val dateR = String.format("%10.10s", dateID)
+            val timeR = dateID.substring(dateID.length - 5)
+            /*
+
             Log.i("dumpDataSet","Data point:")
             Log.i("dumpDataSet","\tType: ${dp.dataType.name}")
             Log.i("dumpDataSet","\tStart: ${dp.getStartTimeString()}")
             Log.i("dumpDataSet","\tEnd: ${dp.getEndTimeString()}")
+             */
             for (field in dp.dataType.fields) {
-                //Log.i("TAG","\tField: ${field.name.toString()} Value: ${dp.getValue(field)}")
-                Log.e("dumpDatasetField","\tField: ${field.name.toString()} Value: ${dp.getValue(field)}")
+                //Log.e("dumpDatasetField","\tField: ${field.name.toString()} Value: ${dp.getValue(field)}") //field.name can be [averagre], [max], [min]
+                val heartRateV = dp.getValue(field).asFloat()
+                Log.e("HEART_RATE_","${heartRateV.toInt().toFloat()}ppm at $dateR $timeR") //field.name can be [averagre], [max], [min]
+                if(field.name.toString() == "average" && (80>heartRateV) && (heartRateV>130)){                         //Definir intervalo alerta
+                    Log.e("HEART_RATE_NOTIFICATION","Register ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR") //field.name can be [averagre], [max], [min]
+                    db.collection("persons").document(person).collection("patient").document("patientInfo").collection("heartRateEvent").document(dateID).set(
+                        hashMapOf(
+                            "date" to dateR,
+                            "time" to timeR,
+                            "ppm" to heartRateV.toInt().toFloat().toString(),
+                            "unit" to "ppm"
+                        )
+                    )
+                }
             }
         }
     }
@@ -161,39 +183,4 @@ class FitApiActivity : AppCompatActivity(){
     fun DataPoint.getEndTimeString() = Instant.ofEpochSecond(this.getEndTime(TimeUnit.SECONDS))
         .atZone(ZoneId.systemDefault())
         .toLocalDateTime().toString()
-
-/*
-
-    /**
-     * Registers a listener with the Sensors API for the provided [DataSource] and [DataType] combo.
-     */
-    private fun registerFitnessDataListener(dataSource: DataSource, dataType: DataType) {
-        // [START register_data_listener]
-        dataPointListener = OnDataPointListener { dataPoint ->
-            for (field in dataPoint.dataType.fields) {
-                val value = dataPoint.getValue(field)
-                Log.i(TAG, "Detected DataPoint field: ${field.name}")
-                Log.i(TAG, "Detected DataPoint value: $value")
-            }
-        }
-        Fitness.getSensorsClient(this, getGoogleAccount())
-            .add(
-                SensorRequest.Builder()
-                    .setDataSource(dataSource) // Optional but recommended for custom data sets.
-                    .setDataType(dataType) // Can't be omitted.
-                    .setSamplingRate(1, TimeUnit.SECONDS)
-                    .build(),
-                dataPointListener)
-            .addOnCompleteListener { task ->
-                if (task.isSuccessful) {
-                    Log.i(TAG, "Listener registered!")
-                } else {
-                    Log.e(TAG, "Listener not registered.", task.exception)
-                }
-            }
-        // [END register_data_listener]
-    }
-
- */
-
 }
