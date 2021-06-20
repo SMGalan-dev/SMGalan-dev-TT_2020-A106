@@ -82,5 +82,7 @@ dependencies {
     implementation 'com.google.android.gms:play-services-base:17.6.0'
     implementation 'com.google.firebase:firebase-core:19.0.0'
 
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
+
 
 }

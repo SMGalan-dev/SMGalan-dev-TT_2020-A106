@@ -1,20 +1,4 @@
-
-/*
- * Copyright (C) 2014 Google, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-package com.example.tt_a106_v0.basicsensorsapikotlin
+package com.example.tt_a106_v0.patient_fragments
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -33,6 +17,7 @@ import com.google.android.gms.fitness.data.DataPoint
 import com.google.android.gms.fitness.data.DataSet
 import com.google.android.gms.fitness.data.DataType
 import com.google.android.gms.fitness.request.DataReadRequest
+import kotlinx.coroutines.*
 import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneId
@@ -40,18 +25,18 @@ import java.util.concurrent.TimeUnit
 
 
 
-class MainActivity : AppCompatActivity(){
+class FitApiActivity : AppCompatActivity(){
     private var GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1 //whatever you want
     //private var dataPointListener: OnDataPointListener? = null
 
 
+
     private val fitnessOptions = FitnessOptions.builder()
-        .addDataType(DataType.TYPE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
-        .addDataType(DataType.AGGREGATE_STEP_COUNT_DELTA, FitnessOptions.ACCESS_READ)
         .addDataType(DataType.TYPE_HEART_RATE_BPM, FitnessOptions.ACCESS_READ)
         .addDataType(DataType.TYPE_ACTIVITY_SEGMENT)
         .build()
 
+    @InternalCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -61,7 +46,27 @@ class MainActivity : AppCompatActivity(){
         btn.setOnClickListener {
             connectToGoogleFit()
         }
+        connectToGoogleFit()
+
+        val myJob: Job = startRepeatingJob(1000L)
+        // To Stop:
+        // myJob.cancel()
     }
+
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @InternalCoroutinesApi
+    private fun startRepeatingJob(timeInterval: Long): Job {
+        return CoroutineScope(Dispatchers.Default).launch {
+            while (NonCancellable.isActive) {
+                // add your task here
+                connectToGoogleFit()
+                delay(timeInterval)
+            }
+        }
+    }
+
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun connectToGoogleFit() {
         //Log.e("GOOGLE_FIT", "google fit init")
@@ -79,7 +84,7 @@ class MainActivity : AppCompatActivity(){
                 fitnessOptions
             )
         } else {
-            Log.d("GOOGLE_FIT", "has permission")
+            //Log.d("GOOGLE_FIT", "has permission")
             accessGoogleFit()
         }
     }
@@ -100,10 +105,11 @@ class MainActivity : AppCompatActivity(){
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun accessGoogleFit() {
+        //
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
-        val startTime = endTime.minusMinutes(30)
+        val startTime = endTime.minusMinutes(50)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)
-        Log.e("accessGoogleFit1", "Range Start: $startTime")
+        Log.e("accessGoogleFit1", "Range Start: $endTime")
 
         Log.e("accessGoogleFit2", "Range End  : $endTime")
 
@@ -131,7 +137,7 @@ class MainActivity : AppCompatActivity(){
     @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("LogNotTimber")
     fun dumpDataSet(dataSet: DataSet) {
-        Log.i("dumpDataSet", "Data returned for Data type: ${dataSet.dataType.name}")
+        //Log.i("dumpDataSet", "Data returned for Data type: ${dataSet.dataType.name}")
         for (dp in dataSet.dataPoints) {
             Log.i("dumpDataSet","Data point:")
             Log.i("dumpDataSet","\tType: ${dp.dataType.name}")

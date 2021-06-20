@@ -43,9 +43,12 @@
         <activity
             android:name=".Users_register.MainRegisterActivity"
             android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
+        <activity
+            android:name=".patient_fragments.FitApiActivity"
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
         <activity android:name=".patient_fragments.GlucometerFragment" />
         <activity
-            android:name=".basicsensorsapikotlin.MainActivity"
+            android:name=".AuthActivity"
             android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

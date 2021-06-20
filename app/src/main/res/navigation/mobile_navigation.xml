@@ -25,6 +25,9 @@
         <action
             android:id="@+id/action_nav_homePatient_to_nav_Glucosa"
             app:destination="@id/nav_Glucosa" />
+        <action
+            android:id="@+id/action_nav_homePatient_to_fitApiActivity"
+            app:destination="@id/fitApiActivity" />
     </fragment>
 
     <fragment
@@ -96,4 +99,9 @@
         android:name="com.example.tt_a106_v0.patient_fragments.AddCiteFragment"
         android:label="fragment_add_cite"
         tools:layout="@layout/fragment_add_cite" />
+    <activity
+        android:id="@+id/fitApiActivity"
+        android:name="com.example.tt_a106_v0.patient_fragments.FitApiActivity"
+        android:label="activity_main"
+        tools:layout="@layout/activity_main" />
 </navigation>
