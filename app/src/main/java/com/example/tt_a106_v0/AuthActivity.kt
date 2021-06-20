@@ -42,9 +42,6 @@ class AuthActivity : AppCompatActivity() {
 
         title = "Autenticación"
         var seleccionar: Int
-
-
-
         signUpButton.setOnClickListener {
             /*
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
