@@ -37,29 +37,29 @@ limitations under the License.
             android:background="?attr/colorPrimary"
             app:popupTheme="@style/Theme.TT_A106_v0.PopupOverlay" />
 
+
     </com.google.android.material.appbar.AppBarLayout>
 
 
     <Button
         android:id="@+id/buttontestfit"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Detener monitoreo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="84dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rwHeartRateRegisters"
-        android:layout_width="409dp"
-        android:layout_height="553dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="413dp"
+        android:layout_height="595dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@+id/buttontestfit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttontestfit"
-        tools:listitem="@layout/item_heartrate"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:listitem="@layout/item_heartrate" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
