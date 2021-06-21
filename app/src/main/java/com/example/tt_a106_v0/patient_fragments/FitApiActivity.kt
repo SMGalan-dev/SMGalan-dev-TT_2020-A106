@@ -184,10 +184,13 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                     Log.i("HEART_RATE_","${field.name.toString()} ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                 } else if (field.name.toString() == "average" ){
                     if (trystop == 1){
-                        Notify.with(this).content {
-                            title = "Alerta Glucontrol!"
-                            text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm el $dateR $timeR"
-                        }.show()
+                        db.collection("persons").document(person).get().addOnSuccessListener {
+                            val name = it.get("name")
+                            Notify.with(this).content {
+                                title = "Alerta Glucontrol!"
+                                text = "El ritmo cardiaco de $name fue de ${heartRateV.toInt().toFloat()}ppm el $dateR $timeR"
+                            }.show()
+                        }
                     }
 
                     Log.e("HEART_RATE_NOTIFICATION","Register ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")

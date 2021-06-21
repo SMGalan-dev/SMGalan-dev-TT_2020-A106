@@ -74,10 +74,13 @@ class GlucometerFragment : AppCompatActivity() {
 
         //Toast.makeText(this, "Registro de glucosa $glucoseLevel $unit", Toast.LENGTH_LONG).show()
 
-        Notify.with(this).content {
-            title = "Glucontrol"
-            text = "Registro de glucosa $glucoseLevel $unit"
-        }.show()
+        db.collection("persons").document(user?.email.toString()).get().addOnSuccessListener {
+            val name = it.get("name")
+            Notify.with(this).content {
+                title = "Glucontrol"
+                text = "Registro de glucosa $glucoseLevel $unit de $name"
+            }.show()
+        }
 
         db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(date).set(
             hashMapOf(
