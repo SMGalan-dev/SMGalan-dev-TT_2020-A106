@@ -1,5 +1,6 @@
 package com.example.tt_a106_v0.bleglucometer
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,9 +26,11 @@ class DietsAdapter(
         private val url: TextView = itemView.findViewById(R.id.twItemDietOther)
         private val date: TextView = itemView.findViewById(R.id.twItemDietDate)
 
+        @SuppressLint("SetTextI18n")    //Solo para agregar el texto a url.text
         fun bind(snapshot: DocumentSnapshot, listener: DietsAdapterListener) {
             val diet: DietsDocsStructInDB? = snapshot.toObject(DietsDocsStructInDB::class.java)
-            url.text = diet?.url
+            url.text = "Dieta agregada el:"
+            //url.text = diet?.url
             date.text = diet?.date
 
             cardView.setOnClickListener {

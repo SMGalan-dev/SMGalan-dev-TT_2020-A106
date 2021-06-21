@@ -1,5 +1,7 @@
 package com.example.tt_a106_v0.patient_fragments
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -22,6 +24,7 @@ class MedicationFragment : Fragment(), MedicationAdapter.MedicationAdapterListen
     private lateinit var mView: View
     private lateinit var adapter: MedicationAdapter
     var user = Firebase.auth.currentUser
+    private val person = user?.email.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,7 +35,6 @@ class MedicationFragment : Fragment(), MedicationAdapter.MedicationAdapterListen
         val newMedicine = mView.findViewById<Button>(R.id.newMedicamentBtn)
         newMedicine.setOnClickListener(Navigation.createNavigateOnClickListener(R.id.action_nav_Medicamentos_to_addMedicineFragment, null))
 
-        val person = user?.email.toString()
         val query: Query = FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("medicationRegister")
 
         // Inflate the layout for this fragment
@@ -45,8 +47,33 @@ class MedicationFragment : Fragment(), MedicationAdapter.MedicationAdapterListen
     }
 
     override fun onMedicationSelected(medication: MedicationStructInDB?) {
-        Toast.makeText(activity, "No OnMedicationSelected Detail frame", Toast.LENGTH_SHORT).show()
+        //Toast.makeText(activity, "No OnMedicationSelected Detail frame", Toast.LENGTH_SHORT).show()
+        val docID = String.format("%s %s", medication?.date.toString(), medication?.time.toString())
+        val builder = AlertDialog.Builder(activity as Context)
+        builder.setTitle("ELIMINAR")
+        builder.setMessage("Desea eliminar ${medication?.name.toString()}?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton("SI"){dialogInterface, which ->
+            FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("medicationRegister").document(docID)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(activity as Context,"Medicación eliminada",Toast.LENGTH_SHORT).show() }
+                .addOnFailureListener { //e -> Log.w("TAG", "Error deleting document", e)
+                    Toast.makeText(activity as Context,"Ha ocurrido un error, por favor inténtelo de nuevo más tarde",Toast.LENGTH_SHORT).show()}
+        }
+        //performing cancel action
+        builder.setNeutralButton("CANCELAR"){dialogInterface , which ->
+            Toast.makeText(activity as Context,"Operación cancelada",Toast.LENGTH_SHORT).show()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
+
     override fun onStart() {
         super.onStart()
         adapter.startListening()
@@ -58,3 +85,37 @@ class MedicationFragment : Fragment(), MedicationAdapter.MedicationAdapterListen
     }
 
 }
+
+
+
+
+/*  CUADO DE DIALOGO AL PRESIONAR UN ITEM DEL RECYCLERVIEW      CUADRODEDIALOGO
+
+    override fun onMedicationSelected(medication: MedicationStructInDB?) {
+        //Toast.makeText(activity, "No OnMedicationSelected Detail frame", Toast.LENGTH_SHORT).show()
+        val builder = AlertDialog.Builder(activity as Context)
+        //set title for alert dialog
+        builder.setTitle("R.string.dialogTitle")
+        //set message for alert dialog
+        builder.setMessage("R.string.dialogMessage")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton("Yes"){dialogInterface, which ->
+            Toast.makeText(activity as Context,"clicked yes",Toast.LENGTH_LONG).show()
+        }
+        //performing cancel action
+        builder.setNeutralButton("Cancel"){dialogInterface , which ->
+            Toast.makeText(activity as Context,"clicked cancel\n operation cancel",Toast.LENGTH_LONG).show()
+        }
+        //performing negative action
+        builder.setNegativeButton("No"){dialogInterface, which ->
+            Toast.makeText(activity as Context,"clicked No",Toast.LENGTH_LONG).show()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+    }
+ */

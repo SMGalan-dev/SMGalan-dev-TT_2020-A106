@@ -14,7 +14,7 @@
         <Button
             android:id="@+id/newMedicamentBtn"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="81dp"
             android:text="@string/agregar_medicaci_n" />
 
         <androidx.recyclerview.widget.RecyclerView

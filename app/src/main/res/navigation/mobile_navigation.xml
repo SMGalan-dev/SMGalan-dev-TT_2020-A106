@@ -110,7 +110,8 @@
     <fragment
         android:id="@+id/addMedicineFragment"
         android:name="com.example.tt_a106_v0.patient_fragments.AddMedicineFragment"
-        android:label="Agrerar medicación"
+        edits
+        android:label="Agregar medicamento"
         tools:layout="@layout/fragment_add_medicine" />
     <fragment
         android:id="@+id/addCiteFragment"

@@ -1,5 +1,7 @@
 package com.example.tt_a106_v0.patient_fragments
 
+import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,6 +19,8 @@ class GlucoseMeasurementsFragment : Fragment(), GlucoseAdapter.GlucoseAdapterLis
     private val db = FirebaseFirestore.getInstance()
     private lateinit var mView: View
     private lateinit var adapter: GlucoseAdapter
+    val user = Firebase.auth.currentUser
+    private val person = user?.email.toString()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,7 +29,7 @@ class GlucoseMeasurementsFragment : Fragment(), GlucoseAdapter.GlucoseAdapterLis
     ): View? {
         val user = Firebase.auth.currentUser
         mView=inflater.inflate(R.layout.fragment_glucose_measurements,container,false)
-        val query: Query = FirebaseFirestore.getInstance().collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").collection("glucoseTestRecords")
+        val query: Query = FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("glucoseTestRecords")
         // Inflate the layout for this fragment
         val recyclerView = mView.findViewById<RecyclerView>(R.id.recyclerGlucoseData)
         adapter = GlucoseAdapter(query, this)
@@ -44,13 +48,32 @@ class GlucoseMeasurementsFragment : Fragment(), GlucoseAdapter.GlucoseAdapterLis
     }
 
     override fun onGlucoseSelected(glucose: GlucoseRecordsStructInDB?) {
-        Toast.makeText(activity, "No OnGlucoseSelected Detail frame", Toast.LENGTH_SHORT).show()
-        /*
-        val intent = Intent(applicationContext, DetailActivity::class.java)
-        intent.putExtra("SPORTS_DETAIL_DATA", sports)
-        startActivity(intent)
+        //Toast.makeText(activity, "No OnGlucoseSelected Detail frame", Toast.LENGTH_SHORT).show()
+        val docID = glucose?.date.toString()
+        val builder = AlertDialog.Builder(activity as Context)
+        builder.setTitle("ELIMINAR")
+        builder.setMessage("Desea eliminar este registro?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
 
-         */
+        //performing positive action
+        builder.setPositiveButton("SI"){dialogInterface, which ->
+            FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("glucoseTestRecords").document(docID)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(activity as Context,"Medición eliminada",Toast.LENGTH_SHORT).show() }
+                .addOnFailureListener { //e -> Log.w("TAG", "Error deleting document", e)
+                    Toast.makeText(activity as Context,"Ha ocurrido un error, por favor inténtelo de nuevo más tarde",Toast.LENGTH_SHORT).show()}
+        }
+        //performing cancel action
+        builder.setNeutralButton("CANCELAR"){dialogInterface , which ->
+            Toast.makeText(activity as Context,"Operación cancelada",Toast.LENGTH_SHORT).show()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
+
 
 }
