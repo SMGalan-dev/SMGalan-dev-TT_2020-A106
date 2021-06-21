@@ -42,6 +42,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
     private lateinit var adapter: HeartRateAdapter
     private var GOOGLE_FIT_PERMISSIONS_REQUEST_CODE = 1 //whatever you want
     //private var dataPointListener: OnDataPointListener? = null
+    private var trystop = 1
 
 
 
@@ -66,6 +67,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
 
         val btn = findViewById<Button>(R.id.buttontestfit)
         btn.setOnClickListener {
+            trystop = 1
             Log.e("GOOGLE_FIT", "HeartRateScanSTOPED")
             val myJob: Job = startRepeatingJob(2000L)
             myJob.cancel()
@@ -109,7 +111,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
         } else {
             Log.d("GOOGLE_FIT", "has permission")
             accessGoogleFit()
-            val myJob: Job = startRepeatingJob(2000L)
+            val myJob: Job = startRepeatingJob(60000L)
         }
     }
 
@@ -122,7 +124,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                 Log.d("GOOGLE_FIT", "connection success")
                 Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show()
                 accessGoogleFit()
-                val myJob: Job = startRepeatingJob(5000L)
+                val myJob: Job = startRepeatingJob(60000L)
             } else {
                 Log.d("GOOGLE_FIT", "connection failed")
             }
@@ -134,7 +136,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
     private fun accessGoogleFit() {
         Log.e("GOOGLE_FIT", "Heartratescan")
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
-        val startTime = endTime.minusMinutes(50)                                              //MODIFICAR INTERVALO AL MINIMO
+        val startTime = endTime.minusMinutes(100)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)
         //Log.e("accessGoogleFit1", "Range Start: $endTime")
         //Log.e("accessGoogleFit2", "Range End  : $endTime")
@@ -181,10 +183,12 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                 if((80<heartRateV.toInt()) && (heartRateV.toInt()<130)){                         //Definir intervalo alerta
                     Log.i("HEART_RATE_","${field.name.toString()} ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                 } else if (field.name.toString() == "average" ){
-                    Notify.with(this).content {
-                        title = "Alerta Glucontrol!"
-                        text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm el $dateR $timeR"
-                    }.show()
+                    if (trystop == 1){
+                        Notify.with(this).content {
+                            title = "Alerta Glucontrol!"
+                            text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm el $dateR $timeR"
+                        }.show()
+                    }
 
                     Log.e("HEART_RATE_NOTIFICATION","Register ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                     db.collection("persons").document(person).collection("patient").document("patientInfo").collection("heartRateEvent").document(dateID).set(
@@ -195,7 +199,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                             "unit" to "ppm"
                         )
                     )
-
+                trystop = 2
                 }
             }
         }

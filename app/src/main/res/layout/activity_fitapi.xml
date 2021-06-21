@@ -46,7 +46,7 @@ limitations under the License.
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:text="Detener monitoreo"
+        android:text="Revisióm de ritmo cardiaco"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="84dp" />
 
