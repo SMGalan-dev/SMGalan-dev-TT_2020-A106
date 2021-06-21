@@ -20,7 +20,7 @@
                 android:id="@+id/tvAddDoctorMail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_margin="16dp"
                 android:layout_weight="1"
                 android:autofillHints="Correo médico"
                 android:ems="10"
@@ -32,6 +32,7 @@
             android:id="@+id/btnAddDoctorAccept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="16dp"
             android:text="Enviar solicitud"
             />
 

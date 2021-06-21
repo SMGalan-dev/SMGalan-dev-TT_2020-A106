@@ -33,9 +33,11 @@ class AddMedicineFragment : Fragment() {
         val user = Firebase.auth.currentUser
         val person = user?.email.toString()
         mView=inflater.inflate(R.layout.fragment_add_medicine,container,false)
-        val dateCh = mView.findViewById<EditText>(R.id.etAddMedicineDate)
+        val dateICh = mView.findViewById<EditText>(R.id.etAddMedicineDateBegin)
+        val dateFCh = mView.findViewById<EditText>(R.id.etAddMedicineDateFinish)
         val timeCh = mView.findViewById<EditText>(R.id.etAddMedicineTime)
-        dateCh.setOnClickListener { showDatePickerDialog() }
+        dateICh.setOnClickListener { showDatePickerDialog() }
+        dateFCh.setOnClickListener{showDateFinishPickerDialog()}
         timeCh.setOnClickListener { showTimePickerDialog() }
 
         val addMedName = mView.findViewById<EditText>(R.id.etAddMedicineName)
@@ -46,9 +48,10 @@ class AddMedicineFragment : Fragment() {
         val addMed = mView.findViewById<Button>(R.id.btnAddNewMed)
         addMed.setOnClickListener {
             val dateF = String.format("%02d-%02d-%02d", day, month, year)
+            val dateT = String.format("%02d-%02d-%02d", day, month, year)
             val timeF = String.format("%02d:%02d", hourOfDay, minute)
             val date = String.format("%s %s", dateF, timeF)
-            if (dateCh.text.isNotEmpty() && timeCh.text.isNotEmpty() && addDosis.text.isNotEmpty() && addMedName.text.isNotEmpty()){
+            if (dateICh.text.isNotEmpty() && timeCh.text.isNotEmpty() && addDosis.text.isNotEmpty() && addMedName.text.isNotEmpty()){
                 db.collection("persons").document(person).collection("patient").document("patientInfo").collection("medicationRegister").document(date).set(
                     hashMapOf(
                         "date" to dateF,
@@ -57,10 +60,12 @@ class AddMedicineFragment : Fragment() {
                         "time" to timeF,
                         "dosis" to addDosis.text.toString(),
                         "frequency" to addFreq.text.toString(),
-                        "comment" to addcomment.text.toString()
+                        "comment" to addcomment.text.toString(),
+                        "dateF" to dateT
                     )
                 )
                 Log.d("date", dateF)
+                Log.d("dateF", dateT)
                 Log.d("name", addMedName.text.toString())
                 Log.d("type", addType.text.toString())
                 Log.d("time", timeF)
@@ -99,9 +104,20 @@ class AddMedicineFragment : Fragment() {
         val datePicker= DatePickerFragment{ day, month, year -> onDateSelected(day, month, year)}
         datePicker.show(activity?.supportFragmentManager!!, "datePicker")
     }
+    private fun showDateFinishPickerDialog() {
+        val datePicker= DatePickerFragment{ day, month, year -> onDateSelectedFinish(day, month, year)}
+        datePicker.show(activity?.supportFragmentManager!!, "datePicker")
+    }
 
     private fun onDateSelected(day: Int, month: Int, year: Int)  {
-        mView.findViewById<EditText>(R.id.etAddMedicineDate).setText("$day / $month / $year")
+        mView.findViewById<EditText>(R.id.etAddMedicineDateBegin).setText("$day / $month / $year")
+        this.day = day
+        this.month = month
+        this.year = year
+
+    }
+    private fun onDateSelectedFinish(day: Int, month: Int, year: Int)  {
+        mView.findViewById<EditText>(R.id.etAddMedicineDateFinish).setText("$day / $month / $year")
         this.day = day
         this.month = month
         this.year = year
