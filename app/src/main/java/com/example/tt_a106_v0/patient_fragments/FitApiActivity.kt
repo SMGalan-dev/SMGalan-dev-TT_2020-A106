@@ -49,10 +49,10 @@ class FitApiActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_fitapi)
 
-        val myJob: Job = startRepeatingJob(2000L)
         val btn = findViewById<Button>(R.id.buttontestfit)
         btn.setOnClickListener {
             Log.e("GOOGLE_FIT", "HeartRateScanSTOPED")
+            val myJob: Job = startRepeatingJob(2000L)
             myJob.cancel()
             Toast.makeText(this, "Monitoreo de pulso detenido", Toast.LENGTH_SHORT).show()
         }
@@ -69,13 +69,14 @@ class FitApiActivity : AppCompatActivity(){
         return CoroutineScope(Dispatchers.Default).launch {
             while (NonCancellable.isActive) {
                 // add your task here
-                connectToGoogleFit()
+                accessGoogleFit()
                 delay(timeInterval)
             }
         }
     }
 
 
+    @InternalCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.O)
     private fun connectToGoogleFit() {
         //Log.e("GOOGLE_FIT", "google fit init")
@@ -95,9 +96,11 @@ class FitApiActivity : AppCompatActivity(){
         } else {
             //Log.d("GOOGLE_FIT", "has permission")
             accessGoogleFit()
+            val myJob: Job = startRepeatingJob(2000L)
         }
     }
 
+    @InternalCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -105,6 +108,7 @@ class FitApiActivity : AppCompatActivity(){
             if (resultCode == Activity.RESULT_OK) {
                 Log.d("GOOGLE_FIT", "connection success")
                 accessGoogleFit()
+                val myJob: Job = startRepeatingJob(2000L)
             } else {
                 Log.d("GOOGLE_FIT", "connection failed")
             }
@@ -114,7 +118,7 @@ class FitApiActivity : AppCompatActivity(){
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun accessGoogleFit() {
-        //Log.e("GOOGLE_FIT", "Heartratescan")
+        Log.e("GOOGLE_FIT", "Heartratescan")
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
         val startTime = endTime.minusMinutes(10)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)
