@@ -134,7 +134,7 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
     private fun accessGoogleFit() {
         Log.e("GOOGLE_FIT", "Heartratescan")
         val endTime = LocalDateTime.now().atZone(ZoneId.systemDefault())
-        val startTime = endTime.minusMinutes(10)                                              //MODIFICAR INTERVALO AL MINIMO
+        val startTime = endTime.minusMinutes(50)                                              //MODIFICAR INTERVALO AL MINIMO
         //val startTime = endTime.minusWeeks(1)
         //Log.e("accessGoogleFit1", "Range Start: $endTime")
         //Log.e("accessGoogleFit2", "Range End  : $endTime")
@@ -183,8 +183,9 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                 } else if (field.name.toString() == "average" ){
                     Notify.with(this).content {
                         title = "Alerta Glucontrol!"
-                        text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR"
+                        text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm el $dateR $timeR"
                     }.show()
+
                     Log.e("HEART_RATE_NOTIFICATION","Register ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                     db.collection("persons").document(person).collection("patient").document("patientInfo").collection("heartRateEvent").document(dateID).set(
                         hashMapOf(
