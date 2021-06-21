@@ -6,7 +6,139 @@
     android:layout_height="match_parent"
     tools:context=".patient_fragments.AddCiteFragment">
 
-    <EditText
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="45dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvAddCiteTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:autofillHints="Tipo de cita"
+                android:ems="10"
+                android:hint="Ingresa un tipo de cita"
+                android:inputType="text" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <EditText
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginLeft="16dp"
+            android:id="@+id/tvAddCiteTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:hint="Hora de la cita"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/tvAddCitePlace"
+            app:layout_constraintStart_toStartOf="@+id/tvAddCiteDate"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddCiteDate" />
+        <EditText
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:id="@+id/tvAddCiteDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:focusable="false"
+            android:hint="Fecha de la cita"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/tvAddCiteTime"
+            app:layout_constraintStart_toStartOf="@+id/tvAddCiteTitle"
+            app:layout_constraintTop_toBottomOf="@+id/tvAddCiteTitle" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvAddCiteMedic"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:autofillHints="Nombre del médico"
+                android:ems="10"
+                android:hint="Ingrese nombre del médico"
+                android:inputType="textPersonName" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvAddCitePlace"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:autofillHints="Lugar"
+                android:ems="10"
+                android:hint="Lugar de la cita"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/tvAddCiteComment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:layout_weight="1"
+                android:autofillHints="Comentarios"
+                android:ems="10"
+                android:hint="Comentarios"
+                android:inputType="textEmailAddress" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <Button
+                android:id="@+id/btnAddNewCite"
+                android:layout_width="wrap_content"
+                android:layout_marginTop="35dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Crear Cita" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--  <EditText
         android:id="@+id/tvAddCiteTitle"
         android:layout_width="218dp"
         android:layout_height="44dp"
@@ -86,6 +218,4 @@
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/tvAddCiteTime"
         app:layout_constraintStart_toStartOf="@+id/tvAddCiteTitle"
-        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteTitle" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/tvAddCiteTitle" />-->
