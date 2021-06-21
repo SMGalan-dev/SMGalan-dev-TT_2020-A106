@@ -1,7 +1,9 @@
 package com.example.tt_a106_v0.patient_fragments
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.CalendarContract
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -16,6 +18,7 @@ import com.example.tt_a106_v0.bleglucometer.TimePickerFragment
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class AddMedicineFragment : Fragment() {
     private val db = FirebaseFirestore.getInstance()
@@ -67,6 +70,22 @@ class AddMedicineFragment : Fragment() {
                 Log.e("DATE", date)
                 Toast.makeText(activity, "Medicación creada", Toast.LENGTH_SHORT).show()
                 activity?.onBackPressed()
+
+
+
+                val intent = Intent(Intent.ACTION_INSERT, CalendarContract.Events.CONTENT_URI).apply {
+                    val beginTime: Calendar = Calendar.getInstance().apply {
+                        set(year, month, day, hourOfDay, minute)
+                    }
+                    putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, beginTime.timeInMillis)
+                    putExtra(CalendarContract.Events.TITLE, addMedName.text.toString())
+                    putExtra(CalendarContract.Events.DESCRIPTION, addcomment.text.toString())
+                    putExtra(CalendarContract.Events.HAS_ALARM, 1)
+                    putExtra(CalendarContract.Reminders.MINUTES, 5)
+
+                }
+                startActivity(intent)
+
             }else{
                 Toast.makeText(activity, "Por favor, rellene los campos basicos", Toast.LENGTH_SHORT).show()
             }
