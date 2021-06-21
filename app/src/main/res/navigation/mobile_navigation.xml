@@ -30,12 +30,25 @@
             app:destination="@id/fitApiActivity" />
     </fragment>
 
-
+    <!--Doctor List-->
     <fragment
         android:id="@+id/nav_Medicos"
         android:name="com.example.tt_a106_v0.patient_fragments.DoctorsFragment"
         android:label="@string/menu_doc"
-        tools:layout="@layout/fragment_doctors" />
+        tools:layout="@layout/fragment_doctors">
+        <action
+            android:id="@+id/action_nav_Doctor_to_addDoctorFragment"
+            app:destination="@+id/addDoctorFragment"
+            />
+    </fragment>
+
+
+    <!---Add Doctor-->
+    <fragment
+        android:id="@+id/addDoctorFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.AddFamiliarFragment"
+        android:label="Agregar Doctor"
+        tools:layout="@layout/fragment_add_doctor" />
 
     <fragment
         android:id="@+id/nav_Citas"
@@ -65,6 +78,10 @@
         android:name="com.example.tt_a106_v0.patient_fragments.AddFamiliarFragment"
         android:label="Agregar Familiar"
         tools:layout="@layout/fragment_add_familiar" />
+
+    <!--Add Doctor -->
+
+
 
     <fragment
         android:id="@+id/nav_Perfil"
