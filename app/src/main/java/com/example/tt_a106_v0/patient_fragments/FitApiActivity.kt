@@ -79,7 +79,7 @@ class FitApiActivity : AppCompatActivity(){
     @InternalCoroutinesApi
     @RequiresApi(Build.VERSION_CODES.O)
     private fun connectToGoogleFit() {
-        //Log.e("GOOGLE_FIT", "google fit init")
+        Log.e("GOOGLE_FIT", "google fit init")
         val account = GoogleSignIn.getAccountForExtension(this, fitnessOptions)
         if (!GoogleSignIn.hasPermissions(
                 account,
@@ -94,7 +94,7 @@ class FitApiActivity : AppCompatActivity(){
                 fitnessOptions
             )
         } else {
-            //Log.d("GOOGLE_FIT", "has permission")
+            Log.d("GOOGLE_FIT", "has permission")
             accessGoogleFit()
             val myJob: Job = startRepeatingJob(2000L)
         }
@@ -107,6 +107,7 @@ class FitApiActivity : AppCompatActivity(){
         if (requestCode == GOOGLE_FIT_PERMISSIONS_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
                 Log.d("GOOGLE_FIT", "connection success")
+                Toast.makeText(this, "Sesión iniciada", Toast.LENGTH_SHORT).show()
                 accessGoogleFit()
                 val myJob: Job = startRepeatingJob(2000L)
             } else {
