@@ -30,11 +30,6 @@
             app:destination="@id/fitApiActivity" />
     </fragment>
 
-    <fragment
-        android:id="@+id/nav_familiar"
-        android:name="com.example.tt_a106_v0.patient_fragments.FamiliarsFragment"
-        android:label="@string/menu_fam"
-        tools:layout="@layout/fragment_familiars" />
 
     <fragment
         android:id="@+id/nav_Medicos"
@@ -53,6 +48,25 @@
     </fragment>
 
     <fragment
+        android:id="@+id/nav_familiar"
+        android:name="com.example.tt_a106_v0.patient_fragments.GetFamiliarsFragment"
+        android:label="@string/menu_fam"
+        tools:layout="@layout/fragment_familiars" >
+        <action
+            android:id="@+id/action_nav_Familiar_to_addFamiliarFragment"
+            app:destination="@id/addFamiliarFragment" />
+    </fragment>
+
+
+
+    <!---Add Familiar-->
+    <fragment
+        android:id="@+id/addFamiliarFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.AddFamiliarFragment"
+        android:label="Agregar Familiar"
+        tools:layout="@layout/fragment_add_familiar" />
+
+    <fragment
         android:id="@+id/nav_Perfil"
         android:name="com.example.tt_a106_v0.patient_fragments.DataUserFragment"
         android:label="Perfil"
@@ -67,6 +81,10 @@
             android:id="@+id/action_nav_Medicamentos_to_addMedicineFragment"
             app:destination="@id/addMedicineFragment" />
     </fragment>
+
+
+
+
 
     <fragment
         android:id="@+id/nav_Dieta"
@@ -92,13 +110,15 @@
     <fragment
         android:id="@+id/addMedicineFragment"
         android:name="com.example.tt_a106_v0.patient_fragments.AddMedicineFragment"
-        android:label="fragment_add_medicine"
+        android:label="Agrerar medicación"
         tools:layout="@layout/fragment_add_medicine" />
     <fragment
         android:id="@+id/addCiteFragment"
         android:name="com.example.tt_a106_v0.patient_fragments.AddCiteFragment"
-        android:label="fragment_add_cite"
+        android:label="Agregar cita"
         tools:layout="@layout/fragment_add_cite" />
+
+
     <activity
         android:id="@+id/fitApiActivity"
         android:name="com.example.tt_a106_v0.patient_fragments.FitApiActivity"
