@@ -66,6 +66,7 @@ class AddMedicineFragment : Fragment() {
                 Log.d("commen", addcomment.text.toString())
                 Log.e("DATE", date)
                 Toast.makeText(activity, "Medicación creada", Toast.LENGTH_SHORT).show()
+                activity?.onBackPressed()
             }else{
                 Toast.makeText(activity, "Por favor, rellene los campos basicos", Toast.LENGTH_SHORT).show()
             }
@@ -73,6 +74,7 @@ class AddMedicineFragment : Fragment() {
         }
         return mView
     }
+
 
     private fun showDatePickerDialog() {
         val datePicker= DatePickerFragment{ day, month, year -> onDateSelected(day, month, year)}

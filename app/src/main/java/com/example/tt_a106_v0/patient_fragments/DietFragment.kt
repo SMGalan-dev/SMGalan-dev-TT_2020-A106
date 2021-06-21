@@ -2,6 +2,7 @@ package com.example.tt_a106_v0.patient_fragments
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tt_a106_v0.R
@@ -28,6 +30,7 @@ import java.util.*
 class DietFragment : Fragment(), DietsAdapter.DietsAdapterListener {
     private val db = FirebaseFirestore.getInstance()
     var user = Firebase.auth.currentUser
+    private val person = user?.email.toString()
     private lateinit var mView: View
     lateinit var alertDialog: AlertDialog
     lateinit var storageReference: StorageReference
@@ -82,7 +85,6 @@ class DietFragment : Fragment(), DietsAdapter.DietsAdapterListener {
 
         mView=inflater.inflate(R.layout.fragment_diet,container,false)
         //alertDialog = SpotsDialog
-        val person = user?.email.toString()
         val sdf = SimpleDateFormat("dd-M-yyyy hh:mm:ss")
         currentDate = sdf.format(Date())
         var pathref = String.format("%s/diets/%s", person, currentDate.toString())
@@ -111,13 +113,39 @@ class DietFragment : Fragment(), DietsAdapter.DietsAdapterListener {
     }
 
     override fun onDietSelected(diet: DietsDocsStructInDB?) {
-        Toast.makeText(activity, "No OnDietSelected Detail frame", Toast.LENGTH_SHORT).show()
-        /*
-        val intent = Intent(applicationContext, DetailActivity::class.java)
-        intent.putExtra("SPORTS_DETAIL_DATA", sports)
-        startActivity(intent)
+        //Toast.makeText(activity, "Descargando Dieta", Toast.LENGTH_SHORT).show()
+        val uriStr = diet?.url.toString()
+        //Log.e("onDietSelected", uriStr)
+        val uriDiet = uriStr.toUri()
+        val defaultBrowser =
+        Intent.makeMainSelectorActivity(Intent.ACTION_MAIN, Intent.CATEGORY_APP_BROWSER)
+        defaultBrowser.data = uriDiet
 
-         */
+        val docID = diet?.date.toString()
+        val builder = AlertDialog.Builder(activity as Context)
+        builder.setTitle("Archivos de dietas")
+        builder.setMessage("¿Que desea hacer con este documento?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton("Descargar"){dialogInterface, which ->
+            startActivity(defaultBrowser)
+        }
+        //performing cancel action
+        builder.setNeutralButton("Eliminar"){dialogInterface , which ->
+            //Toast.makeText(activity as Context,"Operación cancelada",Toast.LENGTH_SHORT).show()
+            FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("dietsDocsRef").document(docID)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(activity as Context,"Archivo de dieta eliminado",Toast.LENGTH_SHORT).show() }
+                .addOnFailureListener { //e -> Log.w("TAG", "Error deleting document", e)
+                    Toast.makeText(activity as Context,"Ha ocurrido un error, por favor inténtelo de nuevo más tarde",Toast.LENGTH_SHORT).show()}
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
     override fun onStart() {
         super.onStart()
