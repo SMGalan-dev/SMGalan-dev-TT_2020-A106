@@ -91,4 +91,9 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.2'
 
 
+
+    // Replace version with release version, e.g. 1.0.0-alpha, -SNAPSHOT
+    implementation 'com.github.Karn:notify:1.4.0'
+
+
 }

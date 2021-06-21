@@ -2,13 +2,11 @@ package com.example.tt_a106_v0
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.Users_register.MainRegisterActivity
+import com.example.tt_a106_v0.patient_fragments.ForgotPasswordActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -39,23 +37,18 @@ class AuthActivity : AppCompatActivity() {
         val Paciente = findViewById<RadioButton>(R.id.usePaciente)
         val Familiar = findViewById<RadioButton>(R.id.useFamiliar)
         val Doctor = findViewById<RadioButton>(R.id.useDoctor)
+        val ForgotPssw = findViewById<TextView>(R.id.twForgotPassword)
 
         title = "Autenticación"
         var seleccionar: Int
 
+        ForgotPssw.setOnClickListener {
+            val psswIntent = Intent(this, ForgotPasswordActivity::class.java)
+            startActivity(psswIntent)
 
+        }
 
         signUpButton.setOnClickListener {
-            /*
-            if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
-                FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
-                    if(it.isSuccessful){
-                        showHome(it.result?.user?.email ?: "", providerType.BASIC)
-                    } else{
-                        showAlert()
-                    }
-                }
-            }*/
             val registerUserIntent = Intent(this, MainRegisterActivity::class.java)
             startActivity(registerUserIntent)
         }
@@ -74,9 +67,6 @@ class AuthActivity : AppCompatActivity() {
                             val intoUserIntent = Intent(this, MainActivityDoctor::class.java)
                             startActivity(intoUserIntent)
                         }
-
-
-
                     } else{
                         showAlert()
                     }

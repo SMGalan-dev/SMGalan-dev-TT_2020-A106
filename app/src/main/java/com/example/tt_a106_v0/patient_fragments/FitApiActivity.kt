@@ -26,6 +26,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query
 import com.google.firebase.ktx.Firebase
+import io.karn.notify.Notify
 import kotlinx.coroutines.*
 import java.time.Instant
 import java.time.LocalDateTime
@@ -180,6 +181,10 @@ class FitApiActivity : AppCompatActivity(), HeartRateAdapter.HeartRateAdapterLis
                 if((80<heartRateV.toInt()) && (heartRateV.toInt()<130)){                         //Definir intervalo alerta
                     Log.i("HEART_RATE_","${field.name.toString()} ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                 } else if (field.name.toString() == "average" ){
+                    Notify.with(this).content {
+                        title = "Alerta Glucontrol!"
+                        text = "Ritmo cardiaco ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR"
+                    }.show()
                     Log.e("HEART_RATE_NOTIFICATION","Register ${heartRateV.toInt().toFloat()}ppm at $dateR $timeR")
                     db.collection("persons").document(person).collection("patient").document("patientInfo").collection("heartRateEvent").document(dateID).set(
                         hashMapOf(
