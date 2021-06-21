@@ -46,6 +46,7 @@
     <style name="Theme.TT_A106_v0.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item  name="android:textColor">@color/bluemain</item>
     </style>
     <style name="Theme.TT_A106_v0.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
     <style name="Theme.TT_A106_v0.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
