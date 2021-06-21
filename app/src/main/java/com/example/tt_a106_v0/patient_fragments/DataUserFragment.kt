@@ -28,6 +28,11 @@ class DataUserFragment : Fragment() {
             mView.findViewById<EditText>(R.id.twMLastNamePatient).setText(it.get("mLastName") as String?)
             mView.findViewById<EditText>(R.id.twGenrePatient).setText(it.get("genre") as String?)
             mView.findViewById<EditText>(R.id.twPhonePatient).setText(it.get("phone") as String?)
+            mView.findViewById<EditText>(R.id.twBirthDPatient).setText(it.get("birthday") as String?)
+            mView.findViewById<EditText>(R.id.twDiabetesType).setText(it.get("diabetes_type") as String?)
+        }
+        db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").get().addOnSuccessListener {
+            mView.findViewById<EditText>(R.id.twDiabetesType).setText(it.get("diabetes_type") as String?)
         }
 
         val update = mView.findViewById<Button>(R.id.updateDataPatientBtn)
@@ -37,6 +42,8 @@ class DataUserFragment : Fragment() {
             val apMText = mView.findViewById<EditText>(R.id.twMLastNamePatient)
             val phoneReg = mView.findViewById<EditText>(R.id.twPhonePatient)
             val genreReg = mView.findViewById<EditText>(R.id.twGenrePatient)
+            val birthday = mView.findViewById<EditText>(R.id.twBirthDPatient)
+            val typeDiab = mView.findViewById<EditText>(R.id.twDiabetesType)
             if (nameText.text.isNotEmpty() && apPText.text.isNotEmpty() && apMText.text.isNotEmpty() && phoneReg.text.isNotEmpty() && genreReg.text.isNotEmpty()){
                 db.collection("persons").document(user?.email.toString()).set(
                     hashMapOf(
@@ -44,7 +51,13 @@ class DataUserFragment : Fragment() {
                         "name" to nameText.text.toString(),
                         "lastName" to apPText.text.toString(),
                         "mLastName" to apMText.text.toString(),
+                        "birthday" to birthday.text.toString(),
                         "phone" to phoneReg.text.toString()
+                    )
+                )
+                db.collection("persons").document(user?.email.toString()).collection("patient").document("patientInfo").set(
+                    hashMapOf(
+                        "diabetes_type" to typeDiab.text.toString()
                     )
                 )
                 Toast.makeText(activity, "Datos actualizados", Toast.LENGTH_SHORT).show()
