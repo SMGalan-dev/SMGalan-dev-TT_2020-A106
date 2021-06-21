@@ -9,12 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        >
 
         <Button
+            android:layout_gravity="center_horizontal"
             android:id="@+id/newMedicamentBtn"
-            android:layout_width="match_parent"
-            android:layout_height="81dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/agregar_medicaci_n" />
 
         <androidx.recyclerview.widget.RecyclerView
