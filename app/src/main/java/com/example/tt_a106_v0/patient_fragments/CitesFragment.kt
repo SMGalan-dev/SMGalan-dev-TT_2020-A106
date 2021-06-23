@@ -21,6 +21,7 @@ class CitesFragment : Fragment(), CitesAdapter.CitesAdapterListener {
     private lateinit var mView: View
     private lateinit var adapter: CitesAdapter
     var user = Firebase.auth.currentUser
+    var person = user?.email.toString()
 
 
     override fun onCreateView(
@@ -48,6 +49,32 @@ class CitesFragment : Fragment(), CitesAdapter.CitesAdapterListener {
 
     override fun onCiteSelected(cite: CiteRegisterStructInDB?) {
         Toast.makeText(activity, "No OnCiteSelected Detail frame", Toast.LENGTH_SHORT).show()
+       /*
+        val docID = cite?.date.toString()
+        val builder = AlertDialog.Builder(activity as Context)
+        builder.setTitle("ELIMINAR")
+        builder.setMessage("Desea eliminar este registro?")
+        builder.setIcon(android.R.drawable.ic_dialog_alert)
+
+        //performing positive action
+        builder.setPositiveButton("SI"){dialogInterface, which ->
+            FirebaseFirestore.getInstance().collection("persons").document(person).collection("patient").document("patientInfo").collection("citesRegister").document(docID)
+                .delete()
+                .addOnSuccessListener {
+                    Toast.makeText(activity as Context,"Cita eliminada",Toast.LENGTH_SHORT).show() }
+                .addOnFailureListener { //e -> Log.w("TAG", "Error deleting document", e)
+                    Toast.makeText(activity as Context,"Ha ocurrido un error, por favor inténtelo de nuevo más tarde",Toast.LENGTH_SHORT).show()}
+        }
+        //performing cancel action
+        builder.setNeutralButton("CANCELAR"){dialogInterface , which ->
+            Toast.makeText(activity as Context,"Operación cancelada",Toast.LENGTH_SHORT).show()
+        }
+        // Create the AlertDialog
+        val alertDialog: AlertDialog = builder.create()
+        // Set other dialog properties
+        alertDialog.setCancelable(false)
+        alertDialog.show()
+        */
     }
     override fun onStart() {
         super.onStart()
