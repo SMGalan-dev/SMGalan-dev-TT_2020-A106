@@ -10,6 +10,7 @@ import com.example.tt_a106_v0.patient_fragments.ForgotPasswordActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
+
 class AuthActivity : AppCompatActivity() {
     //SplashScreen
   //  private lateinit var binding: ActivityAuthBinding
@@ -54,6 +55,7 @@ class AuthActivity : AppCompatActivity() {
         }
 
             logInButton.setOnClickListener {
+
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
                     if(it.isSuccessful){
@@ -82,6 +84,13 @@ class AuthActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
+
+
+
+    /*
+    TEST PDF GENERATION
+     */
+
 
 
 
