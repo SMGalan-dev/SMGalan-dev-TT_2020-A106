@@ -1,8 +1,11 @@
 package com.example.tt_a106_v0
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -49,6 +52,8 @@ private lateinit var binding: ActivityMainPatient1Binding
             startActivity(menuIntent)
         }
 
+        reqPermission()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -66,6 +71,37 @@ private lateinit var binding: ActivityMainPatient1Binding
         FirebaseAuth.getInstance().signOut()
         val intoUserIntent = Intent(this, AuthActivity::class.java)
         startActivity(intoUserIntent)
+    }
+
+
+    private fun reqPermission() {
+
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.WRITE_CALENDAR) !==
+            PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.WRITE_CALENDAR)) {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf( android.Manifest.permission.WRITE_CALENDAR), 1)
+            } else {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf( android.Manifest.permission.WRITE_CALENDAR), 1)
+            }
+        }
+        /*
+        if (ContextCompat.checkSelfPermission(this,
+                android.Manifest.permission.READ_CALENDAR) !==
+            PackageManager.PERMISSION_GRANTED) {
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    android.Manifest.permission.READ_CALENDAR)) {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf( android.Manifest.permission.READ_CALENDAR), 1)
+            } else {
+                ActivityCompat.requestPermissions(this,
+                    arrayOf( android.Manifest.permission.READ_CALENDAR), 1)
+            }
+        }
+         */
     }
 }
 
