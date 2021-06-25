@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.startActivity
 import com.example.tt_a106_v0.databinding.ActivityMainDoctorBinding
+import com.example.tt_a106_v0.utils.CurrentUser
 import com.google.firebase.auth.FirebaseAuth
 
 
@@ -31,8 +32,9 @@ class MainActivityDoctor : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarMainActivityDoctor.toolbar)
+        if(CurrentUser.notifications.isEmpty()) binding.appBarMainActivityDoctor.fab.setImageResource(R.drawable.ic_bell)
         binding.appBarMainActivityDoctor.fab.setOnClickListener {
-            val intoUserIntent = Intent(this, MainActivityFamiliar::class.java)
+            val intoUserIntent = Intent(this, NotificationCenter::class.java)
             startActivity(intoUserIntent)
         }
         /*binding.appBarMainActivityDoctor.fab.setOnClickListener { view ->

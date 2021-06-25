@@ -2,6 +2,8 @@ package com.example.tt_a106_v0
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
@@ -24,7 +26,6 @@ class AuthActivity : AppCompatActivity() {
         setTheme(R.style.Theme_TT_A106_v0)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
-
         //  Setup
         setup()
     }
@@ -42,7 +43,8 @@ class AuthActivity : AppCompatActivity() {
         val Familiar = findViewById<RadioButton>(R.id.useFamiliar)
         val Doctor = findViewById<RadioButton>(R.id.useDoctor)
         val ForgotPssw = findViewById<TextView>(R.id.twForgotPassword)
-
+        emailEditText.setText("andres_victim14@hotmail.com")
+        passwordEditText.setText("merlacmery")
         title = "Autenticación"
         var seleccionar: Int
 
@@ -88,13 +90,20 @@ class AuthActivity : AppCompatActivity() {
         dialog.show()
     }
     private fun setUserDetails(email:String){
-        db.collection("persons").document(email).get().addOnSuccessListener { data ->
-            if(data.exists()){
-                CurrentUser.name = data.data?.get("name") as String
-                CurrentUser.lastName = data.data?.get("lastName") as String
-                CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
-            }
-        }
+            var hand = Handler(Looper.getMainLooper())
+            hand.postDelayed(object : Runnable {
+                override  fun run(){
+                    db.collection("persons").document(email).get().addOnSuccessListener { data ->
+                        if(data.exists()){
+                            CurrentUser.id = data.id
+                            CurrentUser.name = data.data?.get("name") as String
+                            CurrentUser.lastName = data.data?.get("lastName") as String
+                            CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
+                        }
+                    }
+                    hand.postDelayed(this, 500)
+                }
+            }, 0)
     }
 
 

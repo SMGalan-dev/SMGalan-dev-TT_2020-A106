@@ -46,7 +46,8 @@ class AddDoctorFragment : Fragment() {
                     if(data.exists()){
                         var notification = Notification(
                             MessageTypes.AddPatient,
-                            "Hola, ${CurrentUser.name} ${CurrentUser.lastName} te mandó una solicitud para ser tu paciente"
+                            "Hola, ${CurrentUser.name} ${CurrentUser.lastName} te mandó una solicitud para ser tu paciente",
+                            CurrentUser.id
                         ).toMap()
                         doctorRef.update("notifications", FieldValue.arrayUnion(notification))
                         .addOnCompleteListener {
