@@ -79,6 +79,10 @@ class NotificationCenter : AppCompatActivity() {
             doctorRef.update("notifications", FieldValue.arrayRemove(notification))
                 .addOnCompleteListener {
                     Toast.makeText(this, "Solicitud rechazada", Toast.LENGTH_SHORT).show()
+                    Handler(Looper.getMainLooper()).postDelayed( {
+                        finish();
+                        startActivity(intent);
+                    }, 700)
                 }.addOnFailureListener {
                     Toast.makeText(this, "Hubo un error favor de intentar mas tarde", Toast.LENGTH_SHORT).show()
                 }
