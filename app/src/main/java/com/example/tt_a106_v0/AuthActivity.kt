@@ -2,13 +2,17 @@ package com.example.tt_a106_v0
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.tt_a106_v0.Users_register.MainRegisterActivity
 import com.example.tt_a106_v0.patient_fragments.ForgotPasswordActivity
+import com.example.tt_a106_v0.utils.CurrentUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.ktx.Firebase
+import java.util.ArrayList
 
 class AuthActivity : AppCompatActivity() {
     //SplashScreen
@@ -56,6 +60,7 @@ class AuthActivity : AppCompatActivity() {
             logInButton.setOnClickListener {
             if (emailEditText.text.isNotEmpty() && passwordEditText.text.isNotEmpty()){
                 FirebaseAuth.getInstance().signInWithEmailAndPassword(emailEditText.text.toString(), passwordEditText.text.toString()).addOnCompleteListener {
+                    setUserDetails(emailEditText.text.toString())
                     if(it.isSuccessful){
                        if(Paciente.isChecked) {
                             val intoUserIntent = Intent(this, MainActivityPatient1::class.java)
@@ -82,7 +87,15 @@ class AuthActivity : AppCompatActivity() {
         val dialog: AlertDialog = builder.create()
         dialog.show()
     }
-
+    private fun setUserDetails(email:String){
+        db.collection("persons").document(email).get().addOnSuccessListener { data ->
+            if(data.exists()){
+                CurrentUser.name = data.data?.get("name") as String
+                CurrentUser.lastName = data.data?.get("lastName") as String
+                CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
+            }
+        }
+    }
 
 
 }
