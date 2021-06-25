@@ -1,13 +1,14 @@
 package com.example.tt_a106_v0.utils
 
-enum class MessageTypes {
-    AddPatient
+enum class MessageTypes(i: Int) {
+    AddPatient(0)
 }
-data class Notification(var type: MessageTypes, var message: String) {
+data class Notification(var type: MessageTypes, var message: String, var from: String) {
     fun toMap(): Map<String, Any?> {
         return mapOf(
-            "type" to type,
-            "message" to message
+            "type" to type.ordinal,
+            "message" to message,
+            "from"  to from
         )
     }
 }

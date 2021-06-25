@@ -16,19 +16,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TT_A106_v0"
         android:usesCleartextTraffic="true">
-        <activity android:name=".patient_fragments.ForgotPasswordActivity"></activity>
+        <activity android:name=".NotificationCenter"></activity>
+        <activity android:name=".patient_fragments.ForgotPasswordActivity" />
         <activity
             android:name=".MainActivityPatient1"
             android:label="@string/title_activity_main_patient1"
-            android:theme="@style/Theme.TT_A106_v0.NoActionBar"></activity>
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
         <activity
             android:name=".MainActivityFamiliar"
             android:label="MainActivityFamiliar"
-            android:theme="@style/Theme.TT_A106_v0.NoActionBar"></activity>
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
         <activity
             android:name=".MainActivityDoctor"
             android:label="MainActivityDoctor"
-            android:theme="@style/Theme.TT_A106_v0.NoActionBar"></activity>
+            android:theme="@style/Theme.TT_A106_v0.NoActionBar" />
         <activity
             android:name=".Users_register.EndRegister"
             android:theme="@style/Theme.TT_A106_v0.NoActionBar" />

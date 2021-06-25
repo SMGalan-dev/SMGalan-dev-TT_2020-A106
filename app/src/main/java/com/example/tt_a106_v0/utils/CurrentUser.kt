@@ -5,6 +5,7 @@ import kotlin.collections.HashMap
 
 
 object CurrentUser {
+    var id = ""
     var name = ""
     var lastName = ""
     var notifications = ArrayList<Any>()
