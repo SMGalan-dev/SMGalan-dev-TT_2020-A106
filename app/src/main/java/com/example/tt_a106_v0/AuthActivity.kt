@@ -43,8 +43,6 @@ class AuthActivity : AppCompatActivity() {
         val Familiar = findViewById<RadioButton>(R.id.useFamiliar)
         val Doctor = findViewById<RadioButton>(R.id.useDoctor)
         val ForgotPssw = findViewById<TextView>(R.id.twForgotPassword)
-        emailEditText.setText("andres_victim14@hotmail.com")
-        passwordEditText.setText("merlacmery")
         title = "Autenticación"
         var seleccionar: Int
 
