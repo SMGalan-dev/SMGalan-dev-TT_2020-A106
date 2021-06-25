@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +12,6 @@ import com.example.tt_a106_v0.patient_fragments.ForgotPasswordActivity
 import com.example.tt_a106_v0.utils.CurrentUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.ktx.Firebase
-import java.util.ArrayList
 
 class AuthActivity : AppCompatActivity() {
     //SplashScreen
@@ -96,7 +93,7 @@ class AuthActivity : AppCompatActivity() {
                             CurrentUser.id = data.id
                             CurrentUser.name = data.data?.get("name") as String
                             CurrentUser.lastName = data.data?.get("lastName") as String
-                            CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
+                            //CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
                         }
                     }
                     hand.postDelayed(this, 500)

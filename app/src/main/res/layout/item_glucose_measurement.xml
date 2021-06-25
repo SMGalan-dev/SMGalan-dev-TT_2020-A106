@@ -24,6 +24,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="textEnd"
             android:textAppearance="?attr/textAppearanceSubtitle1"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -36,9 +37,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginVertical="4dp"
+            android:layout_marginStart="80dp"
             android:layout_marginTop="16dp"
             android:text="Gl Level"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="20sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -49,8 +52,18 @@
             android:layout_marginVertical="4dp"
             android:text="Unit"
             android:textAppearance="?attr/textAppearanceHeadline6"
+            android:textSize="20sp"
             app:layout_constraintStart_toEndOf="@+id/twItemGLDataGlucose"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="52dp"
+            android:layout_height="45dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_medical_services_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

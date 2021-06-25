@@ -60,7 +60,8 @@
                             android:text="Perfil"
                             android:textAlignment="center"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -87,15 +88,16 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_marginTop="18dp"
-                            android:src="@drawable/profile" />
+                            android:src="@drawable/patients" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Pulso Cardiaco"
+                            android:text="Ritmo Cardiaco"
                             android:textAlignment="center"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
 
                     </LinearLayout>
 
@@ -129,7 +131,8 @@
                             android:layout_marginTop="20dp"
                             android:text="Citas"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -161,7 +164,8 @@
                             android:layout_marginTop="20dp"
                             android:text="Medicamentos"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -192,7 +196,8 @@
                             android:layout_marginTop="20dp"
                             android:text="Dieta"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
@@ -224,7 +229,8 @@
                             android:layout_marginTop="20dp"
                             android:text="Glucosa"
                             android:textColor="@color/bluemain"
-                            android:textSize="18sp" />
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
                     </LinearLayout>
 
 
