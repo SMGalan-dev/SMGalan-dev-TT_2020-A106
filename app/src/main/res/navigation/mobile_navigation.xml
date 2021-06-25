@@ -46,7 +46,7 @@
     <!---Add Doctor-->
     <fragment
         android:id="@+id/addDoctorFragment"
-        android:name="com.example.tt_a106_v0.patient_fragments.AddFamiliarFragment"
+        android:name="com.example.tt_a106_v0.patient_fragments.AddDoctorFragment"
         android:label="Agregar Doctor"
         tools:layout="@layout/fragment_add_doctor" />
 
