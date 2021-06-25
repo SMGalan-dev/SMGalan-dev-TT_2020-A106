@@ -13,6 +13,7 @@ import com.example.tt_a106_v0.patient_fragments.ForgotPasswordActivity
 import com.example.tt_a106_v0.utils.CurrentUser
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import com.google.firebase.ktx.Firebase
 import java.util.ArrayList
 
@@ -96,7 +97,12 @@ class AuthActivity : AppCompatActivity() {
                             CurrentUser.id = data.id
                             CurrentUser.name = data.data?.get("name") as String
                             CurrentUser.lastName = data.data?.get("lastName") as String
-                            CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
+                            if((data.data?.get("notifications")) == null){
+                                db.collection("persons").document(email).set(hashMapOf("notifications" to ArrayList<Any>()), SetOptions.merge())
+                                CurrentUser.notifications = ArrayList<Any>()
+                            }
+                            else
+                                CurrentUser.notifications = data.data?.get("notifications") as ArrayList<Any>
                         }
                     }
                     hand.postDelayed(this, 500)
